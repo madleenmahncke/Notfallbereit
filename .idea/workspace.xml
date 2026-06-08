@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added user registration on POST to database">
+    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added user find method for database">
       <change beforePath="$PROJECT_DIR$/.idea/controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AuthController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/database/UsersRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/UserRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/database/UserRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/UserRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/routes/AuthRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/AuthRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +87,7 @@
       <updated>1780583652787</updated>
       <workItem from="1780583655283" duration="4858000" />
       <workItem from="1780903949250" duration="1111000" />
-      <workItem from="1780905510358" duration="10287000" />
+      <workItem from="1780905510358" duration="12323000" />
     </task>
     <task id="LOCAL-00001" summary="added node and express server">
       <option name="closed" value="true" />
@@ -103,7 +105,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780931937323</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added user find method for database">
+      <option name="closed" value="true" />
+      <created>1780948898688</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1780948898688</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +122,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added node and express server" />
     <MESSAGE value="added user registration on POST to database" />
-    <option name="LAST_COMMIT_MESSAGE" value="added user registration on POST to database" />
+    <MESSAGE value="added user find method for database" />
+    <option name="LAST_COMMIT_MESSAGE" value="added user find method for database" />
   </component>
 </project>
