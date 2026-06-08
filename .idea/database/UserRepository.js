@@ -11,6 +11,15 @@ async function createUser(email, password) {
     return result.insertId;
 }
 
+async function findById(userId) {
+    const [rows] = await db.query(
+        'SELECT * FROM users WHERE id = ?',
+        [userId],
+    );
+
+    return rows[0];
+}
+
 // finds a user by e-mail
 async function findByEmail(email) {
     const [rows] = await db.query(
@@ -30,8 +39,19 @@ async function updateUser(userId, email, password) {
     return result;
 }
 
+async function deleteUser(userId) {
+    const [result] = await db.query(
+        'DELETE FROM users WHERE id = ?',
+        [userId]
+    );
+
+    return result;
+}
+
 module.exports = {
     createUser,
+    findById,
     findByEmail,
     updateUser,
+    deleteUser
 }
