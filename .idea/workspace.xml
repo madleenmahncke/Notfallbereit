@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/routes/usersRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/UserController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -25,22 +28,22 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "madleenmahncke"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;madleenmahncke&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/madleenmahncke/Notfallbereit.git",
-    "accountId": "67930c98-6865-4897-af85-5ed0b09dc814"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/madleenmahncke/Notfallbereit.git&quot;,
+    &quot;accountId&quot;: &quot;67930c98-6865-4897-af85-5ed0b09dc814&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2,
-  "fromUser": false
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3EfxvBtTKl4WcgdC5VullNJgXvS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -50,6 +53,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
@@ -57,6 +61,8 @@
     "git-widget-placeholder": "issues/1-user-account",
     "git.auto.fetch.suggestion.counter": "2",
     "javascript.preferred.runtime.type.id": "node",
+    "last_opened_file_path": "E:/Programme/WebStormProjects/Notfallbereit",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -81,6 +87,8 @@
       <option name="presentableId" value="Default" />
       <updated>1780583652787</updated>
       <workItem from="1780583655283" duration="4858000" />
+      <workItem from="1780903949250" duration="1111000" />
+      <workItem from="1780905510358" duration="739000" />
     </task>
     <servers />
   </component>
