@@ -21,7 +21,17 @@ async function findByEmail(email) {
     return rows[0];
 }
 
+async function updateUser(userId, email, password) {
+    const [result] = await db.query(
+        'UPDATE users SET email = ?, password_hash = ? WHERE id = ?',
+        [email, password, userId]
+    );
+
+    return result;
+}
+
 module.exports = {
     createUser,
     findByEmail,
+    updateUser,
 }

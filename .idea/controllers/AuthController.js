@@ -17,7 +17,7 @@ const register = async (req, res) => {
         hashedPassword,
     );
 
-    res.status(201).json({
+    res.status(200).json({
         message: 'Benutzer erstellt',
         id: userId
     });
