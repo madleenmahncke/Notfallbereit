@@ -1,4 +1,4 @@
-const userRepository = require('../database/UsersRepository');
+const userRepository = require('../database/UserRepository');
 
 const register = async (req, res) => {
     const { email, password } = req.body;
