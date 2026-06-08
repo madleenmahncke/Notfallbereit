@@ -32,7 +32,7 @@ const login = async (req, res) => {
 
     if (!user) {
         return res.status(404).json({
-            message: 'E-Mail oder Passwort sind falsch - User nicht existiert'
+            message: 'E-Mail oder Passwort sind falsch'
         });
     }
 
@@ -43,7 +43,7 @@ const login = async (req, res) => {
 
     if (!validPassword) {
         return res.status(401).json({
-            message: 'E-Mail oder Passwort sind falsch - PW falsch'
+            message: 'E-Mail oder Passwort sind falsch'
         });
     }
 
