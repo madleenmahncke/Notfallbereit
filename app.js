@@ -1,12 +1,34 @@
 const express = require('express');
+const db = require('./.idea/database/DB');
+
+const authRoutes = require('./.idea/routes/AuthRoutes');
 
 const app = express();
-const PORT = 3000;
 
-app.get('/', (req, res) => {
-    res.send('Notfallbereit Backend läuft');
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+
+app.get('/notfallbereit', async (req, res) => {
+
+    try {
+
+        const [rows] = await db.query('SELECT 1');
+
+        res.json({
+            success: true
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+
 });
 
-app.listen(PORT, () => {
-    console.log(`Server läuft auf Port ${PORT}`);
+app.listen(3000, () => {
+    console.log('Server läuft auf Port 3000');
 });

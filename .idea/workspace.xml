@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/routes/usersRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added node and express server">
+      <change afterPath="$PROJECT_DIR$/.idea/database/DB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/database/UsersRepository.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/routes/UserRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AuthController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/routes/usersRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/AuthRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,11 +91,24 @@
       <updated>1780583652787</updated>
       <workItem from="1780583655283" duration="4858000" />
       <workItem from="1780903949250" duration="1111000" />
-      <workItem from="1780905510358" duration="739000" />
+      <workItem from="1780905510358" duration="8121000" />
     </task>
+    <task id="LOCAL-00001" summary="added node and express server">
+      <option name="closed" value="true" />
+      <created>1780906301374</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1780906301374</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added node and express server" />
+    <option name="LAST_COMMIT_MESSAGE" value="added node and express server" />
   </component>
 </project>
