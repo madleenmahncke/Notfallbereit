@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added node and express server">
-      <change afterPath="$PROJECT_DIR$/.idea/database/DB.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/database/UsersRepository.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/routes/UserRoutes.js" afterDir="false" />
+    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added login for users">
       <change beforePath="$PROJECT_DIR$/.idea/controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AuthController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/routes/usersRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/AuthRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="1-user-account" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,11 +55,12 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "disable.download.node.interpreter.editor.notification": "true",
-    "git-widget-placeholder": "issues/1-user-account",
-    "git.auto.fetch.suggestion.counter": "2",
+    "git-widget-placeholder": "issues/3-login",
+    "git.auto.fetch.suggestion.counter": "3",
     "javascript.preferred.runtime.type.id": "node",
     "last_opened_file_path": "E:/Programme/WebStormProjects/Notfallbereit",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "E:\\Programme\\WebStorm 2026.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -91,7 +86,7 @@
       <updated>1780583652787</updated>
       <workItem from="1780583655283" duration="4858000" />
       <workItem from="1780903949250" duration="1111000" />
-      <workItem from="1780905510358" duration="8121000" />
+      <workItem from="1780905510358" duration="13660000" />
     </task>
     <task id="LOCAL-00001" summary="added node and express server">
       <option name="closed" value="true" />
@@ -101,7 +96,31 @@
       <option name="project" value="LOCAL" />
       <updated>1780906301374</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added user registration on POST to database">
+      <option name="closed" value="true" />
+      <created>1780931937323</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1780931937323</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added user find method for database">
+      <option name="closed" value="true" />
+      <created>1780948898688</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1780948898688</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added login for users">
+      <option name="closed" value="true" />
+      <created>1780951088977</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780951088977</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +128,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added node and express server" />
-    <option name="LAST_COMMIT_MESSAGE" value="added node and express server" />
+    <MESSAGE value="added user registration on POST to database" />
+    <MESSAGE value="added user find method for database" />
+    <MESSAGE value="added login for users" />
+    <option name="LAST_COMMIT_MESSAGE" value="added login for users" />
   </component>
 </project>
