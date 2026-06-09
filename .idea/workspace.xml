@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added update for user">
-      <change beforePath="$PROJECT_DIR$/.idea/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/database/UserRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/UserRepository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/routes/UserRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/UserRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AuthController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +54,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "disable.download.node.interpreter.editor.notification": "true",
-    "git-widget-placeholder": "issues/7-delete-user",
+    "git-widget-placeholder": "issues/9-security",
     "git.auto.fetch.suggestion.counter": "3",
     "javascript.preferred.runtime.type.id": "node",
     "last_opened_file_path": "E:/Programme/WebStormProjects/Notfallbereit",

@@ -1,9 +1,17 @@
 const userRepository = require('../database/UserRepository');
 // for hashing passwords
 const bcrypt = require('bcrypt');
+// for validating e-mails to follow e-mail pattern
+const validator = require('validator');
 
 const register = async (req, res) => {
     const { email, password } = req.body;
+
+    if (!validator.isEmail(email)) {
+        return res.status(400).send({
+            error: 'Ungültige E-Mail-Adresse'
+        })
+    }
 
     // hashes a password
     const hashedPassword = await bcrypt.hash(
