@@ -1,8 +1,14 @@
 const userRepository = require('../database/UserRepository');
+
 // for hashing passwords
 const bcrypt = require('bcrypt');
+
 // for validating e-mails to follow e-mail pattern
 const validator = require('validator');
+
+// checking for a safe password     Quelle: ChatGPT
+const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{12,}$/;
 
 const register = async (req, res) => {
     const { email, password } = req.body;
@@ -11,6 +17,20 @@ const register = async (req, res) => {
         return res.status(400).send({
             error: 'Ungültige E-Mail-Adresse'
         })
+    }
+
+    // validates the given password for safety
+    if (!validator.isStrongPassword(password, {
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+
+    })) {
+        return res.status(400).send({
+            message: 'Passwort erfüllt die Anforderungen nicht! Das Passwort muss mindestens 12 Zeichen, jeweils einen Klein- und Großbuchstaben sowie jeweils mindestens ein Sonderzeichen und eine Zahl enthalten!'
+        });
     }
 
     // hashes a password
