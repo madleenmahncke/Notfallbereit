@@ -19,6 +19,16 @@ const register = async (req, res) => {
         })
     }
 
+    const user = await userRepository.findByEmail(
+        email,
+    )
+
+    if (user) {
+        return res.status(404).json({
+            message: 'E-Mail-Adresse ist bereits vergeben!'
+        });
+    }
+
     // validates the given password for safety
     if (!validator.isStrongPassword(password, {
         minLength: 12,
