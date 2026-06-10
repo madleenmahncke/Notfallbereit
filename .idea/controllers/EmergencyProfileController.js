@@ -2,11 +2,9 @@ const emergencyProfileRepository = require('../database/EmergencyProfileReposito
 
 const createEmergencyProfile = async (req, res) => {
     const { patientId } = req.params;
-
     const {firstName, lastName, street, zipCode} = req.body;
 
-    const profileId =
-        await emergencyProfileRepository.createEmergencyProfile(
+    const profileId = await emergencyProfileRepository.createEmergencyProfile(
             patientId,
             firstName,
             lastName,

@@ -5,10 +5,7 @@ const bcrypt = require('bcrypt');
 
 const register = async (req, res) => {
     const { email, password } = req.body;
-
-    const user = await userRepository.findByEmail(
-        email,
-    );
+    const user = await userRepository.findByEmail(email);
 
     if (user) {
         return res.status(400).json({
@@ -36,10 +33,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-
-    const user = await userRepository.findByEmail(
-        email,
-    );
+    const user = await userRepository.findByEmail(email);
 
     if (!user) {
         return res.status(404).json({

@@ -46,7 +46,6 @@ const updateMedication = async (req, res) => {
     const { emergencyProfileId, id  } = req.params;
     const {name, dosage, description} = req.body;
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
-    //const emergencyProfile = medicationRepository.findEmergencyProfile(id);
 
     if (!emergencyProfile) {
         return res.status(400).send({
