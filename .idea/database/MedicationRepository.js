@@ -9,28 +9,19 @@ async function findById(medicationId) {
     return rows[0];
 }
 
-async function findEmergencyProfile(medicationId) {
-    const [rows] = await db.query(
-        'SELECT profile_id FROM medications WHERE id = ?',
-        [medicationId],
-    );
-
-    return rows[0];
-}
-
-async function createMedication(emergencyProfileId, name, dosage, description) {
+async function createMedication(emergencyProfileId, name, dosage, notes) {
     const [result] = await db.query(
         `INSERT INTO medications (profile_id, name, dosage, notes) VALUES (?, ?, ?, ?)`,
-        [emergencyProfileId, name, dosage, description]
+        [emergencyProfileId, name, dosage, notes]
     );
 
     return result.insertId;
 }
 
-async function updateMedication(medicationId, name, dosage, description) {
+async function updateMedication(medicationId, name, dosage, notes) {
     const [result] = await db.query(
         'UPDATE medications SET name = ?, dosage = ?, notes = ? WHERE id = ?',
-        [name, dosage, description, medicationId]
+        [name, dosage, notes, medicationId]
     )
 
     return result;
@@ -38,7 +29,6 @@ async function updateMedication(medicationId, name, dosage, description) {
 
 module.exports = {
     findById,
-    findEmergencyProfile,
     createMedication,
     updateMedication,
 }

@@ -4,7 +4,7 @@ const userRepository = require('../database/UserRepository');
 const bcrypt = require('bcrypt');
 
 const register = async (req, res) => {
-    const { email, password } = req.body;
+    const {email, password} = req.body;
     const user = await userRepository.findByEmail(email);
 
     if (user) {
@@ -32,7 +32,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const { email, password } = req.body;
+    const {email, password} = req.body;
     const user = await userRepository.findByEmail(email);
 
     if (!user) {

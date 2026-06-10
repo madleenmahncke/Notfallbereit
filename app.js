@@ -5,6 +5,9 @@ const authRoutes = require('./.idea/routes/AuthRoutes');
 const userRoutes = require('./.idea/routes/UserRoutes');
 const emergencyProfileRoutes = require('./.idea/routes/EmergencyProfileRoutes');
 const medicationRoutes = require('./.idea/routes/MedicationRoutes');
+const allergyRoutes = require('./.idea/routes/AllergyRoutes');
+const emergencyContactRoutes = require('./.idea/routes/EmergencyContactRoutes');
+
 
 const app = express();
 
@@ -14,6 +17,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/emergencyProfile', emergencyProfileRoutes)
 app.use('/api/medication', medicationRoutes)
+app.use('/api/allergy', allergyRoutes)
+app.use('/api/emergencyContact', emergencyContactRoutes)
 
 app.get('/notfallbereit', async (req, res) => {
 

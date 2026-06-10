@@ -3,8 +3,8 @@ const userRepository = require('../database/UserRepository');
 const bcrypt = require('bcrypt');
 
 const updateUser = async (req, res) => {
-    const { id } = req.params;
-    const { email, password } = req.body;
+    const {id} = req.params;
+    const {email, password} = req.body;
     const user = await userRepository.findById(id);
 
     // checks if user exists
@@ -34,8 +34,8 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-    const { id } = req.params;
-    const { email, password } = req.body;
+    const {id} = req.params;
+    const {email, password} = req.body;
     const user = await userRepository.findById(id);
 
     // checks if user exists
