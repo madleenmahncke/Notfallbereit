@@ -6,6 +6,16 @@ const bcrypt = require('bcrypt');
 const register = async (req, res) => {
     const { email, password } = req.body;
 
+    const user = await userRepository.findByEmail(
+        email,
+    );
+
+    if (user) {
+        return res.status(400).json({
+            message: 'Benutzer existiert bereits.'
+        })
+    };
+
     // hashes a password
     const hashedPassword = await bcrypt.hash(
         password,
@@ -29,13 +39,13 @@ const login = async (req, res) => {
 
     const user = await userRepository.findByEmail(
         email,
-    )
+    );
 
     if (!user) {
         return res.status(404).json({
             message: 'E-Mail oder Passwort sind falsch'
         });
-    }
+    };
 
     const validPassword = await bcrypt.compare(
         password,
@@ -46,12 +56,12 @@ const login = async (req, res) => {
         return res.status(401).json({
             message: 'E-Mail oder Passwort sind falsch'
         });
-    }
+    };
 
     res.status(200).json({
         message: 'Benutzer eingeloggt',
         id: user.id
-    })
+    });
 }
 
 module.exports = {

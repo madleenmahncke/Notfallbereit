@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="updates workspace.xml">
-      <change afterPath="$PROJECT_DIR$/.idea/controllers/EmergencyProfileController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/routes/EmergencyProfileRoutes.js" afterDir="false" />
+    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added adding an emergency profile for a user">
+      <change afterPath="$PROJECT_DIR$/.idea/controllers/MedicationController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/database/MedicationRepository.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/routes/MedicationRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AuthController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/UserController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
@@ -50,24 +52,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "disable.download.node.interpreter.editor.notification": "true",
-    "git-widget-placeholder": "emergency__folder/4-add-emergency-folder",
-    "git.auto.fetch.suggestion.counter": "3",
-    "javascript.preferred.runtime.type.id": "node",
-    "last_opened_file_path": "E:/Programme/WebStormProjects/Notfallbereit",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "E:\\Programme\\WebStorm 2026.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;disable.download.node.interpreter.editor.notification&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;emergency__folder/4-add-emergency-folder&quot;,
+    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;3&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Programme/WebStormProjects/Notfallbereit&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\Programme\\WebStorm 2026.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Programme\WebStormProjects\.idea\models" />
@@ -91,6 +93,7 @@
       <workItem from="1780583655283" duration="4858000" />
       <workItem from="1780903949250" duration="1111000" />
       <workItem from="1780905510358" duration="16431000" />
+      <workItem from="1781093833524" duration="7091000" />
     </task>
     <task id="LOCAL-00001" summary="added node and express server">
       <option name="closed" value="true" />
@@ -156,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780999192818</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added adding an emergency profile for a user">
+      <option name="closed" value="true" />
+      <created>1781024467364</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1781024467364</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +182,7 @@
     <MESSAGE value="added update for user" />
     <MESSAGE value="added email validation" />
     <MESSAGE value="updates workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates workspace.xml" />
+    <MESSAGE value="added adding an emergency profile for a user" />
+    <option name="LAST_COMMIT_MESSAGE" value="added adding an emergency profile for a user" />
   </component>
 </project>

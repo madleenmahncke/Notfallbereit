@@ -4,6 +4,7 @@ const db = require('./.idea/database/DB');
 const authRoutes = require('./.idea/routes/AuthRoutes');
 const userRoutes = require('./.idea/routes/UserRoutes');
 const emergencyProfileRoutes = require('./.idea/routes/EmergencyProfileRoutes');
+const medicationRoutes = require('./.idea/routes/MedicationRoutes');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/emergencyProfile', emergencyProfileRoutes)
+app.use('/api/medication', medicationRoutes)
 
 app.get('/notfallbereit', async (req, res) => {
 

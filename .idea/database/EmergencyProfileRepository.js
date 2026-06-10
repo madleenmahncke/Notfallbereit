@@ -1,5 +1,13 @@
 const db = require("./DB");
 
+async function findById(emergencyProfileId) {
+    const [rows] = await db.query(
+        'SELECT * FROM users WHERE id = ?',
+        [emergencyProfileId],
+    );
+
+    return rows[0];
+}
 
 async function createEmergencyProfile(userId, firstName, lastName, street, zipCode) {
     const [result] = await db.query(
@@ -11,5 +19,6 @@ async function createEmergencyProfile(userId, firstName, lastName, street, zipCo
 }
 
 module.exports = {
+    findById,
     createEmergencyProfile,
 }
