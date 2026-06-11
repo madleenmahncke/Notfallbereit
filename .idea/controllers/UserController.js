@@ -3,8 +3,16 @@ const userRepository = require('../database/UserRepository');
 const bcrypt = require('bcrypt');
 
 const updateUser = async (req, res) => {
-    const { id } = req.params;
-    const { email, password } = req.body;
+    const {id} = req.params;
+    const {email, password} = req.body;
+    const user = await userRepository.findById(id);
+
+    // checks if user exists
+    if (!user) {
+        return res.status(404).json({
+            message: 'Benutzer nicht gefunden'
+        });
+    };
 
     // hashes a password
     const hashedPassword = await bcrypt.hash(
@@ -20,14 +28,14 @@ const updateUser = async (req, res) => {
     );
 
     res.status(200).json({
-        message: 'Benutzer geupdated',
+        message: 'Benutzer aktualisiert.',
         id: userId
     });
 }
 
 const deleteUser = async (req, res) => {
-    const { id } = req.params;
-    const { email, password } = req.body;
+    const {id} = req.params;
+    const {email, password} = req.body;
     const user = await userRepository.findById(id);
 
     // checks if user exists
@@ -35,7 +43,7 @@ const deleteUser = async (req, res) => {
         return res.status(404).json({
             message: 'Benutzer nicht gefunden'
         });
-    }
+    };
 
     // checks if password is correct in order to delete the account
     const validPassword = await bcrypt.compare(
@@ -47,11 +55,11 @@ const deleteUser = async (req, res) => {
         return res.status(401).json({
             message: 'Passwort ist nicht korrekt'
         });
-    }
+    };
 
     const userId = await userRepository.deleteUser(
         id
-    )
+    );
 
     return res.status(200).json({
         message: 'Benutzer wurde gelöscht'

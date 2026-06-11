@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="added delete user">
+    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="adding allergy and emergency contact add and update methods">
+      <change beforePath="$PROJECT_DIR$/.idea/controllers/EmergencyProfileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/EmergencyProfileController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/routes/EmergencyProfileRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/EmergencyProfileRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="issues/7-delete-user" />
+        <entry key="$PROJECT_DIR$" value="issues/9-security" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,24 +48,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "disable.download.node.interpreter.editor.notification": "true",
-    "git-widget-placeholder": "development",
-    "git.auto.fetch.suggestion.counter": "3",
-    "javascript.preferred.runtime.type.id": "node",
-    "last_opened_file_path": "E:/Programme/WebStormProjects/Notfallbereit",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "E:\\Programme\\WebStorm 2026.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;disable.download.node.interpreter.editor.notification&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;emergency__folder/4-add-emergency-folder&quot;,
+    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;3&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Programme/WebStormProjects/Notfallbereit&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\Programme\\WebStorm 2026.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Programme\WebStormProjects\.idea\models" />
@@ -85,8 +88,9 @@
       <updated>1780583652787</updated>
       <workItem from="1780583655283" duration="4858000" />
       <workItem from="1780903949250" duration="1111000" />
-      <workItem from="1780905510358" duration="16822000" />
-      <workItem from="1780996061844" duration="708000" />
+      <workItem from="1780905510358" duration="16431000" />
+      <workItem from="1781093833524" duration="11450000" />
+      <workItem from="1781173150282" duration="7014000" />
     </task>
     <task id="LOCAL-00001" summary="added node and express server">
       <option name="closed" value="true" />
@@ -136,15 +140,55 @@
       <option name="project" value="LOCAL" />
       <updated>1780953638674</updated>
     </task>
-    <task id="LOCAL-00007" summary="added delete user">
+    <task id="LOCAL-00007" summary="added email validation">
       <option name="closed" value="true" />
-      <created>1780955043956</created>
+      <created>1780997320657</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1780955043956</updated>
+      <updated>1780997320657</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="updates workspace.xml">
+      <option name="closed" value="true" />
+      <created>1780999192818</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1780999192818</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added adding an emergency profile for a user">
+      <option name="closed" value="true" />
+      <created>1781024467364</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1781024467364</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added adding medication to an emergency profile and updating medication">
+      <option name="closed" value="true" />
+      <created>1781120482308</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1781120482308</updated>
+    </task>
+    <task id="LOCAL-00011" summary="code cleaning">
+      <option name="closed" value="true" />
+      <created>1781120604129</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1781120604129</updated>
+    </task>
+    <task id="LOCAL-00012" summary="adding allergy and emergency contact add and update methods">
+      <option name="closed" value="true" />
+      <created>1781124787070</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1781124787070</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,7 +201,12 @@
     <MESSAGE value="added login for users" />
     <MESSAGE value="removed specific error for password and email login" />
     <MESSAGE value="added update for user" />
-    <MESSAGE value="added delete user" />
-    <option name="LAST_COMMIT_MESSAGE" value="added delete user" />
+    <MESSAGE value="added email validation" />
+    <MESSAGE value="updates workspace.xml" />
+    <MESSAGE value="added adding an emergency profile for a user" />
+    <MESSAGE value="added adding medication to an emergency profile and updating medication" />
+    <MESSAGE value="code cleaning" />
+    <MESSAGE value="adding allergy and emergency contact add and update methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding allergy and emergency contact add and update methods" />
   </component>
 </project>
