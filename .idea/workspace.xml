@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="code cleaning">
-      <change afterPath="$PROJECT_DIR$/.idea/controllers/AllergyController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/controllers/EmergencyContactController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/database/AllergyRepository.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/database/EmergencyContactRepository.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/routes/AllergyRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/routes/EmergencyContactRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AuthController.js" afterDir="false" />
+    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="adding allergy and emergency contact add and update methods">
       <change beforePath="$PROJECT_DIR$/.idea/controllers/EmergencyProfileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/EmergencyProfileController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/controllers/MedicationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/MedicationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/database/MedicationRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/MedicationRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/routes/EmergencyProfileRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/EmergencyProfileRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +89,8 @@
       <workItem from="1780583655283" duration="4858000" />
       <workItem from="1780903949250" duration="1111000" />
       <workItem from="1780905510358" duration="16431000" />
-      <workItem from="1781093833524" duration="11401000" />
+      <workItem from="1781093833524" duration="11450000" />
+      <workItem from="1781173150282" duration="7014000" />
     </task>
     <task id="LOCAL-00001" summary="added node and express server">
       <option name="closed" value="true" />
@@ -188,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781120604129</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="adding allergy and emergency contact add and update methods">
+      <option name="closed" value="true" />
+      <created>1781124787070</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1781124787070</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +206,7 @@
     <MESSAGE value="added adding an emergency profile for a user" />
     <MESSAGE value="added adding medication to an emergency profile and updating medication" />
     <MESSAGE value="code cleaning" />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleaning" />
+    <MESSAGE value="adding allergy and emergency contact add and update methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding allergy and emergency contact add and update methods" />
   </component>
 </project>
