@@ -27,8 +27,18 @@ async function updateAllergy(allergyId, name, notes) {
     return result;
 }
 
+async function deleteAllergy(allergyId, name) {
+    const [result] = await db.query(
+        'DELETE FROM allergies WHERE id = ? AND allergen = ?',
+        [allergyId, name]
+    );
+
+    return result;
+}
+
 module.exports = {
     findById,
     createAllergy,
     updateAllergy,
+    deleteAllergy,
 }
