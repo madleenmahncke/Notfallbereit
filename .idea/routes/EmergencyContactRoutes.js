@@ -5,5 +5,6 @@ const emergencyContactController = require('../controllers/EmergencyContactContr
 
 router.post('/:emergencyProfileId', emergencyContactController.createEmergencyContact);
 router.put('/:emergencyProfileId/:id', emergencyContactController.updateEmergencyContact);
+router.delete('/:emergencyProfileId/:id', emergencyContactController.deleteEmergencyContact);
 
 module.exports = router;

@@ -27,8 +27,18 @@ async function updateEmergencyContact(emergencyContactId, firstName, lastName, p
     return result;
 }
 
+async function deleteEmergencyContact(emergencyContactId, firstName, lastName) {
+    const [result] = await db.query(
+        'DELETE FROM emergency_contacts WHERE id = ? AND first_name = ? AND last_name = ?',
+        [emergencyContactId, firstName, lastName]
+    );
+
+    return result;
+}
+
 module.exports = {
     findById,
     createEmergencyContact,
     updateEmergencyContact,
+    deleteEmergencyContact,
 }

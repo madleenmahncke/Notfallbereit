@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="adding update EmergencyProfile">
-      <change beforePath="$PROJECT_DIR$/.idea/controllers/AllergyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AllergyController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/database/AllergyRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/AllergyRepository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/routes/AllergyRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/AllergyRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="adding delete Allergy">
+      <change beforePath="$PROJECT_DIR$/.idea/controllers/EmergencyContactController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/EmergencyContactController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/database/EmergencyContactRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/EmergencyContactRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/routes/EmergencyContactRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/EmergencyContactRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +99,7 @@
       <workItem from="1780903949250" duration="1111000" />
       <workItem from="1780905510358" duration="16431000" />
       <workItem from="1781093833524" duration="11450000" />
-      <workItem from="1781173150282" duration="8209000" />
+      <workItem from="1781173150282" duration="8643000" />
     </task>
     <task id="LOCAL-00001" summary="added node and express server">
       <option name="closed" value="true" />
@@ -206,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781183869214</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="adding delete Allergy">
+      <option name="closed" value="true" />
+      <created>1781184881669</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1781184881669</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +233,7 @@
     <MESSAGE value="code cleaning" />
     <MESSAGE value="adding allergy and emergency contact add and update methods" />
     <MESSAGE value="adding update EmergencyProfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding update EmergencyProfile" />
+    <MESSAGE value="adding delete Allergy" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding delete Allergy" />
   </component>
 </project>
