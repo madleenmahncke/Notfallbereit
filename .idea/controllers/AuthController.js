@@ -5,7 +5,7 @@ const emergencyProfileRepository = require('../database/emergencyProfileReposito
 const bcrypt = require('bcrypt');
 
 const register = async (req, res) => {
-    const {email, password} = req.body;
+    const {email, password, repeatedPassword} = req.body;
     const user = await userRepository.findByEmail(email);
 
     if (user) {
@@ -13,6 +13,12 @@ const register = async (req, res) => {
             message: 'Benutzer existiert bereits.'
         })
     };
+
+    if (password !== repeatedPassword) {
+        return res.status(400).json({
+            message: 'Passwörter stimmen nicht überein.'
+        })
+    }
 
     // hashes a password
     const hashedPassword = await bcrypt.hash(

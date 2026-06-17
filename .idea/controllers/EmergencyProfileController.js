@@ -5,6 +5,7 @@ const createEmergencyProfile = async (req, res) => {
     const {patientId} = req.params;
     const {firstName, lastName, street, zipCode} = req.body;
     const user = await userRepository.findById(patientId);
+    const userId = parseInt(patientId);
 
     if (!user) {
         return res.status(404).json({
@@ -13,7 +14,7 @@ const createEmergencyProfile = async (req, res) => {
     };
 
     const profileId = await emergencyProfileRepository.createEmergencyProfile(
-            patientId,
+        userId,
             firstName,
             lastName,
             street,
@@ -21,7 +22,8 @@ const createEmergencyProfile = async (req, res) => {
         );
 
     res.status(201).json({
-        message: 'Notfallmappe erstellt für Benutzer ' + patientId,
+        message: 'Notfallmappe erstellt für Benutzer ' + userId,
+        userId: userId,
         emergencyProfileId: profileId
     });
 }
