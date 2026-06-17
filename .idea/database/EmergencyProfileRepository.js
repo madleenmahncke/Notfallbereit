@@ -36,6 +36,7 @@ async function updateEmergencyProfile(emergencyProfileId, firstName, lastName, s
 
 module.exports = {
     findById,
+    findByUserId,
     createEmergencyProfile,
     updateEmergencyProfile,
 }
