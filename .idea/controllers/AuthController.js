@@ -1,4 +1,5 @@
 const userRepository = require('../database/UserRepository');
+const emergencyProfileRepository = require('../database/emergencyProfileRepository');
 
 // for hashing passwords
 const bcrypt = require('bcrypt');
@@ -34,6 +35,8 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const {email, password} = req.body;
     const user = await userRepository.findByEmail(email);
+    let hasEmergencyProfile;
+    let emergencyProfileId;
 
     if (!user) {
         return res.status(404).json({
@@ -52,9 +55,21 @@ const login = async (req, res) => {
         });
     };
 
+    const emergencyProfile = await emergencyProfileRepository.findByUserId(user.id);
+
+    if (!emergencyProfile) {
+        hasEmergencyProfile = false;
+        emergencyProfileId = null
+    } else {
+        hasEmergencyProfile = true;
+        emergencyProfileId = emergencyProfile.id
+    }
+
     res.status(200).json({
         message: 'Benutzer eingeloggt',
-        id: user.id
+        userId: user.id,
+        hasEmergencyProfile: hasEmergencyProfile,
+        emergencyProfileId: emergencyProfileId
     });
 }
 

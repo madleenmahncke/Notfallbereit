@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aca2152b-0f2f-4474-8908-88f8caff8649" name="Changes" comment="adding delete Emergency Contact">
-      <change beforePath="$PROJECT_DIR$/.idea/controllers/MedicationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/MedicationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/database/MedicationRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/MedicationRepository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/routes/MedicationRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/routes/MedicationRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controllers/AuthController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/database/EmergencyProfileRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="emergency_folder/4-add-emergency-folder" />
+        <entry key="$PROJECT_DIR$" value="emergency_folder/17-delete-information-in-emergency-folder" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,22 +32,22 @@
     &quot;assignee&quot;: &quot;madleenmahncke&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/madleenmahncke/Notfallbereit.git",
-    "accountId": "67930c98-6865-4897-af85-5ed0b09dc814"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/madleenmahncke/Notfallbereit.git&quot;,
+    &quot;accountId&quot;: &quot;67930c98-6865-4897-af85-5ed0b09dc814&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "madleenmahncke",
-    "repository": "Notfallbereit"
+    &quot;owner&quot;: &quot;madleenmahncke&quot;,
+    &quot;repository&quot;: &quot;Notfallbereit&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2,
   &quot;fromUser&quot;: false
@@ -66,7 +66,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "disable.download.node.interpreter.editor.notification": "true",
-    "git-widget-placeholder": "emergency__folder/17-delete-information-in-emergency-folder",
+    "git-widget-placeholder": "development",
     "git.auto.fetch.suggestion.counter": "3",
     "javascript.preferred.runtime.type.id": "node",
     "last_opened_file_path": "E:/Programme/WebStormProjects/Notfallbereit",
@@ -100,6 +100,10 @@
       <workItem from="1780905510358" duration="16431000" />
       <workItem from="1781093833524" duration="11450000" />
       <workItem from="1781173150282" duration="9030000" />
+      <workItem from="1781253470621" duration="1804000" />
+      <workItem from="1781439237028" duration="1877000" />
+      <workItem from="1781551950591" duration="620000" />
+      <workItem from="1781725838479" duration="938000" />
     </task>
     <task id="LOCAL-00001" summary="added node and express server">
       <option name="closed" value="true" />

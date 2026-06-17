@@ -9,6 +9,15 @@ async function findById(emergencyProfileId) {
     return rows[0];
 }
 
+async function findByUserId(userId) {
+    const [rows] = await db.query(
+        'SELECT * FROM emergency_profiles WHERE patient_id = ?',
+        [userId],
+    );
+
+    return rows[0];
+}
+
 async function createEmergencyProfile(userId, firstName, lastName, street, zipCode) {
     const [result] = await db.query(
         `INSERT INTO emergency_profiles (patient_id, first_name, last_name, street, zip_code) VALUES (?, ?, ?, ?, ?)`,
