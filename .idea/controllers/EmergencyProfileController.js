@@ -1,6 +1,13 @@
 const emergencyProfileRepository = require('../database/EmergencyProfileRepository.js')
 const userRepository = require('../database/UserRepository.js')
 
+const allergyController = require('../controllers/AllergyController.js')
+const medicationController = require('../controllers/MedicationController.js')
+const emergencyContactController = require('../controllers/EmergencyContactController.js')
+const allergyRepository = require("../database/AllergyRepository");
+const medicationRepository = require("../database/MedicationRepository");
+const emergencyContactRepository = require("../database/EmergencyContactRepository");
+
 const createEmergencyProfile = async (req, res) => {
     const {patientId} = req.params;
     const {firstName, lastName, street, zipCode} = req.body;
@@ -60,7 +67,38 @@ const updateEmergencyProfile = async (req, res) => {
     })
 }
 
+const getEmergencyProfile = async (req, res) => {
+    const {patientId, id} = req.params;
+    const user = await userRepository.findById(patientId);
+    const emergencyProfile = await emergencyProfileRepository.findById(id);
+
+    if (!user) {
+        return res.status(404).json({
+            message: 'Benutzer nicht gefunden.'
+        });
+    };
+
+    if (!emergencyProfile) {
+        return res.status(400).send({
+            message: 'Notfallprofil nicht gefunden.',
+        })
+    };
+
+    const allergies = await allergyRepository.findByEmergencyProfileId(id);
+    const medications = await medicationRepository.findByEmergencyProfileId(id);
+    const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(id);
+
+    res.status(201).json({
+        message: 'Notfallmappe von Benutzer ' + patientId,
+        emergencyProfile: emergencyProfile,
+        allergies: allergies,
+        medications: medications,
+        emergencyContacts: emergencyContacts
+    })
+}
+
 module.exports = {
     createEmergencyProfile,
     updateEmergencyProfile,
+    getEmergencyProfile,
 }

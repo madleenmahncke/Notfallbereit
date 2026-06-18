@@ -9,6 +9,15 @@ async function findById(emergencyContactId) {
     return rows[0];
 }
 
+async function findByEmergencyProfileId(emergencyProfileId) {
+    const [rows] = await db.query(
+        'SELECT * FROM emergency_contacts WHERE profile_id = ?',
+        [emergencyProfileId],
+    );
+
+    return rows;
+}
+
 async function createEmergencyContact(emergencyProfileId, firstName, lastName, phoneNumber, relationship) {
     const [result] = await db.query(
         `INSERT INTO emergency_contacts (profile_id, first_name, last_name, phone, relationship) VALUES (?, ?, ?, ?, ?)`,
@@ -38,6 +47,7 @@ async function deleteEmergencyContact(emergencyContactId, firstName, lastName) {
 
 module.exports = {
     findById,
+    findByEmergencyProfileId,
     createEmergencyContact,
     updateEmergencyContact,
     deleteEmergencyContact,

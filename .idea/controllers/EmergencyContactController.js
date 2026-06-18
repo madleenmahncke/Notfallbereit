@@ -1,6 +1,7 @@
 const emergencyContactRepository = require('../database/EmergencyContactRepository.js');
 const emergencyProfileRepository = require('../database/EmergencyProfileRepository');
 const allergyRepository = require("../database/AllergyRepository");
+const userRepository = require("../database/UserRepository");
 
 // TODO: add res for duplicate entry EmergencyContact in db
 const createEmergencyContact = async (req, res) => {
@@ -102,8 +103,30 @@ const deleteEmergencyContact = async (req, res) => {
     });
 }
 
+async function getEmergencyContacts(emergencyProfileId, userId) {
+    const user = await userRepository.findById(userId);
+    const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
+
+    if (!emergencyProfile) {
+        return res.status(400).send({
+            message: 'Notfallprofil nicht gefunden.',
+        })
+    }
+
+    const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(emergencyProfileId);
+
+    if (!medications) {
+        return res.status(400).send({
+            message: 'Es wurden keine Notfallkontakte gefunden.',
+        })
+    }
+
+    res.status(200).json(medications);
+}
+
 module.exports = {
     createEmergencyContact,
     updateEmergencyContact,
-    deleteEmergencyContact
+    deleteEmergencyContact,
+    getEmergencyContacts,
 }

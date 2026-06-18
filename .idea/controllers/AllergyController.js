@@ -98,8 +98,30 @@ const deleteAllergy = async (req, res) => {
     });
 }
 
+async function getAllergies(emergencyProfileId, userId) {
+    const user = await userRepository.findById(userId);
+    const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
+
+    if (!emergencyProfile) {
+        return res.status(400).send({
+            message: 'Notfallprofil nicht gefunden.',
+        })
+    }
+
+    const allergies = await allergyRepository.findByEmergencyProfileId(emergencyProfileId);
+
+    if (!allergies) {
+        return res.status(400).send({
+            message: 'Es wurden keine Allergien gefunden.',
+        })
+    }
+
+    res.status(200).json(allergies);
+}
+
 module.exports = {
     createAllergy,
     updateAllergy,
     deleteAllergy,
+    getAllergies
 }

@@ -17,7 +17,7 @@ const register = async (req, res) => {
 
     if (user) {
         return res.status(400).json({
-            message: 'Benutzer existiert bereits.'
+            message: 'E-Mail-Adresse ist bereits vergeben.'
         })
     };
 
@@ -29,18 +29,8 @@ const register = async (req, res) => {
 
     if (!validator.isEmail(email)) {
         return res.status(400).send({
-            error: 'Ungültige E-Mail-Adresse'
+            message: 'Ungültige E-Mail-Adresse'
         })
-    }
-
-    const user = await userRepository.findByEmail(
-        email,
-    )
-
-    if (user) {
-        return res.status(404).json({
-            message: 'E-Mail-Adresse ist bereits vergeben!'
-        });
     }
 
     // validates the given password for safety
@@ -53,7 +43,8 @@ const register = async (req, res) => {
 
     })) {
         return res.status(400).send({
-            message: 'Passwort erfüllt die Anforderungen nicht! Das Passwort muss mindestens 12 Zeichen, jeweils einen Klein- und Großbuchstaben sowie jeweils mindestens ein Sonderzeichen und eine Zahl enthalten!'
+            message: 'Passwort erfüllt die Anforderungen nicht! Das Passwort muss mindestens 12 Zeichen, jeweils einen ' +
+                'Klein- und Großbuchstaben sowie jeweils mindestens ein Sonderzeichen und eine Zahl enthalten!'
         });
     }
 
@@ -70,7 +61,7 @@ const register = async (req, res) => {
     );
 
     res.status(200).json({
-        message: 'Benutzer erstellt',
+        message: 'Benutzer erstellt.',
         id: userId
     });
 };
@@ -83,7 +74,7 @@ const login = async (req, res) => {
 
     if (!user) {
         return res.status(404).json({
-            message: 'E-Mail oder Passwort sind falsch'
+            message: 'E-Mail oder Passwort sind falsch.'
         });
     };
 
@@ -94,11 +85,14 @@ const login = async (req, res) => {
 
     if (!validPassword) {
         return res.status(401).json({
-            message: 'E-Mail oder Passwort sind falsch'
+            message: 'E-Mail oder Passwort sind falsch.'
         });
     };
 
     const emergencyProfile = await emergencyProfileRepository.findByUserId(user.id);
+
+    console.log('USER ID:', user.id);
+    console.log('EMERGENCY PROFILE:', emergencyProfile);
 
     if (!emergencyProfile) {
         hasEmergencyProfile = false;
