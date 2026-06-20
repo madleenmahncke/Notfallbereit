@@ -11,6 +11,15 @@ async function createUser(email, password) {
     return result.insertId;
 }
 
+async function createParamedic(email, password, paramedicCode) {
+    const [result] = await db.query(
+        'INSERT INTO users (email, password_hash, role, paramedic_code, must_change_password) VALUES (?, ?, ?, ?, ?)',
+        [email, password, 'PARAMEDIC', paramedicCode, true],
+    );
+
+    return result.insertId;
+}
+
 async function findById(userId) {
     const [rows] = await db.query(
         'SELECT * FROM users WHERE id = ?',
@@ -50,6 +59,7 @@ async function deleteUser(userId) {
 
 module.exports = {
     createUser,
+    createParamedic,
     findById,
     findByEmail,
     updateUser,

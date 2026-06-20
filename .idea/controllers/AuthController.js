@@ -91,9 +91,6 @@ const login = async (req, res) => {
 
     const emergencyProfile = await emergencyProfileRepository.findByUserId(user.id);
 
-    console.log('USER ID:', user.id);
-    console.log('EMERGENCY PROFILE:', emergencyProfile);
-
     if (!emergencyProfile) {
         hasEmergencyProfile = false;
         emergencyProfileId = null
@@ -106,11 +103,59 @@ const login = async (req, res) => {
         message: 'Benutzer eingeloggt',
         userId: user.id,
         hasEmergencyProfile: hasEmergencyProfile,
-        emergencyProfileId: emergencyProfileId
+        emergencyProfileId: emergencyProfileId,
+        role: user.role,
+        mustChangePassword: user.must_change_password,
     });
 }
 
+const createParamedic = async (req, res) => {
+    const {email, paramedicCode} = req.body;
+    const user = await userRepository.findByEmail(email);
+
+    if (user) {
+        return res.status(400).json({
+            message: 'E-Mail-Adresse ist bereits vergeben.'
+        })
+    };
+
+    if (!validator.isEmail(email)) {
+        return res.status(400).send({
+            message: 'Ungültige E-Mail-Adresse.'
+        })
+    }
+
+    // this if statement is build by ChatGPT
+    if (!/^\d{6}$/.test(String(paramedicCode))) {
+        return res.status(400).send({
+            message: 'Kein gültiger Zugehörigkeitscode.',
+        })
+    }
+
+    const temporaryPassword = Math.random().toString(36).slice(-10);
+
+    // hashes a password
+    const hashedPassword = await bcrypt.hash(
+        temporaryPassword,
+        // TODO: explaining what salt means
+        12
+    );
+
+    const userId = await userRepository.createParamedic(
+        email,
+        hashedPassword,
+        paramedicCode,
+    );
+
+    res.status(200).json({
+        message: 'Rettungssanitäter/in erstellt.',
+        id: userId,
+        temporaryPassword: temporaryPassword,
+    });
+};
+
 module.exports = {
     register,
-    login
+    login,
+    createParamedic,
 };

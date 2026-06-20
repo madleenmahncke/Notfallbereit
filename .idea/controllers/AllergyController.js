@@ -87,14 +87,16 @@ const deleteAllergy = async (req, res) => {
         })
     }
 
-    const allergyId = await allergyRepository.deleteAllergy(
+    const result = await allergyRepository.deleteAllergy(
         id,
         name
     )
 
     return res.status(200).json({
         message: 'Allergie wurde gelöscht',
-        allergyId: allergyId
+        result: result,
+        allergyId: id,
+        emergencyProfileId: emergencyProfileId,
     });
 }
 
