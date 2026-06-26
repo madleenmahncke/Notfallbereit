@@ -2,7 +2,7 @@ const db = require("./DB");
 
 async function findById(emergencyProfileId) {
     const [rows] = await db.query(
-        'SELECT * FROM users WHERE id = ?',
+        'SELECT * FROM emergency_profiles WHERE id = ?',
         [emergencyProfileId],
     );
 

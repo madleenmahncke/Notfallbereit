@@ -73,7 +73,6 @@ const updateMedication = async (req, res) => {
 
 const deleteMedication = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
-    const {name, dosage} = req.body;
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const medication = await medicationRepository.findById(id);
 
@@ -96,9 +95,7 @@ const deleteMedication = async (req, res) => {
     }
 
     const medicationId = await medicationRepository.deleteMedication(
-        id,
-        name,
-        dosage
+        id
     )
 
     return res.status(200).json({

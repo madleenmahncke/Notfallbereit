@@ -36,10 +36,10 @@ async function updateAllergy(allergyId, name, notes) {
     return result;
 }
 
-async function deleteAllergy(allergyId, name) {
+async function deleteAllergy(allergyId) {
     const [result] = await db.query(
-        'DELETE FROM allergies WHERE id = ? AND allergen = ?',
-        [allergyId, name]
+        'DELETE FROM allergies WHERE id = ?',
+        [allergyId]
     );
 
     return result;

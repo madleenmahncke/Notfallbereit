@@ -36,10 +36,10 @@ async function updateMedication(medicationId, name, dosage, notes) {
     return result;
 }
 
-async function deleteMedication(medicationId, name, dosage) {
+async function deleteMedication(medicationId) {
     const [result] = await db.query(
-        'DELETE FROM medications WHERE id = ? AND name = ? AND dosage = ?',
-        [medicationId, name, dosage]
+        'DELETE FROM medications WHERE id = ?',
+        [medicationId]
     );
 
     return result;

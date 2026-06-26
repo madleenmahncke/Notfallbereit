@@ -29,7 +29,7 @@ const createEmergencyContact = async (req, res) => {
         relationship
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Notfallkontakt erstellt für das Notfallprofil ' + emergencyProfileId,
         emergencyContactId: emergencyContactId
     });
@@ -69,7 +69,6 @@ const updateEmergencyContact = async (req, res) => {
 
 const deleteEmergencyContact = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
-    const {firstName, lastName, phoneNumber, relationship} = req.body;
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const emergencyContact = await emergencyContactRepository.findById(id);
 
@@ -92,9 +91,7 @@ const deleteEmergencyContact = async (req, res) => {
     }
 
     const emergencyContactId = await emergencyContactRepository.deleteEmergencyContact(
-        id,
-        firstName,
-        lastName
+        id
     )
 
     return res.status(200).json({
