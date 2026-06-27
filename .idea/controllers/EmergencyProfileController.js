@@ -7,6 +7,7 @@ const emergencyContactController = require('../controllers/EmergencyContactContr
 const allergyRepository = require("../database/AllergyRepository");
 const medicationRepository = require("../database/MedicationRepository");
 const emergencyContactRepository = require("../database/EmergencyContactRepository");
+const {v4: uuidv4} = require("uuid");
 
 const createEmergencyProfile = async (req, res) => {
     const {patientId} = req.params;
@@ -20,13 +21,16 @@ const createEmergencyProfile = async (req, res) => {
         });
     };
 
+    const uuid = uuidv4();
+
     const profileId = await emergencyProfileRepository.createEmergencyProfile(
         userId,
-            firstName,
-            lastName,
-            street,
-            zipCode
-        );
+        firstName,
+        lastName,
+        street,
+        zipCode,
+        uuid
+    );
 
     res.status(201).json({
         message: 'Notfallmappe erstellt für Benutzer ' + userId,

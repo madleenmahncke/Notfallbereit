@@ -57,7 +57,7 @@ const register = async (req, res) => {
 
     const userId = await userRepository.createUser(
         email,
-        hashedPassword,
+        hashedPassword
     );
 
     res.status(200).json({

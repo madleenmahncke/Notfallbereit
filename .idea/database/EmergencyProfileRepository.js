@@ -18,10 +18,10 @@ async function findByUserId(userId) {
     return rows[0];
 }
 
-async function createEmergencyProfile(userId, firstName, lastName, street, zipCode) {
+async function createEmergencyProfile(userId, firstName, lastName, street, zipCode, uuid) {
     const [result] = await db.query(
-        `INSERT INTO emergency_profiles (patient_id, first_name, last_name, street, zip_code) VALUES (?, ?, ?, ?, ?)`,
-        [userId, firstName, lastName, street, zipCode]
+        `INSERT INTO emergency_profiles (patient_id, first_name, last_name, street, zip_code, qr_code_uuid) VALUES (?, ?, ?, ?, ?, ?)`,
+        [userId, firstName, lastName, street, zipCode, uuid]
     );
 
     return result.insertId;
