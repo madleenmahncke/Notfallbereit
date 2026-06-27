@@ -61,7 +61,7 @@ const updateEmergencyContact = async (req, res) => {
         relationship
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Notfallkontakt aktualisiert für das Notfallprofil ' + emergencyProfileId,
         emergencyContactId: emergencyContactId
     })

@@ -57,7 +57,7 @@ const updateAllergy = async (req, res) => {
         notes
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Allergie aktualisiert für das Notfallprofil ' + emergencyProfileId,
         allergyId: allergyId
     })
