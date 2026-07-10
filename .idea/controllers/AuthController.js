@@ -1,6 +1,7 @@
 const userRepository = require('../database/UserRepository');
 const emergencyProfileRepository = require('../database/emergencyProfileRepository');
-
+// for tokens
+const jwt = require("jsonwebtoken");
 // for hashing passwords
 const bcrypt = require('bcrypt');
 
@@ -99,6 +100,17 @@ const login = async (req, res) => {
         emergencyProfileId = emergencyProfile.id
     }
 
+    const token = jwt.sign(
+        {
+            id: user.id,
+            role: user.role
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: process.env.JWT_EXPIRES_IN
+        }
+    );
+
     res.status(200).json({
         message: 'Benutzer eingeloggt',
         userId: user.id,
@@ -106,6 +118,7 @@ const login = async (req, res) => {
         emergencyProfileId: emergencyProfileId,
         role: user.role,
         mustChangePassword: user.must_change_password,
+        token: token
     });
 }
 
