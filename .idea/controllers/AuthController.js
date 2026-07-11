@@ -167,8 +167,40 @@ const createParamedic = async (req, res) => {
     });
 };
 
+const verifyParamedic = async (req, res) => {
+    const {paramedicId, verificationCode} = req.body;
+
+    const user = await userRepository.findById(paramedicId);
+
+    if (!user) {
+        return res.status(404).json({
+            message: 'E-Mail oder Passwort sind falsch.'
+        });
+    };
+
+    if (verificationCode.length === 0 || verificationCode.length > 6 || verificationCode.length < 6) {
+        return res.status(400).send({
+            message: 'Verifizierungscode ungültig!'
+        })
+    }
+
+    const paramedicCodeFromDB = await userRepository.getParamedicCode(paramedicId);
+
+    if (verificationCode != paramedicCodeFromDB) {
+        return res.status(400).send({
+            message: "Verifizierungscode ungültig!"
+        })
+    }
+
+    res.status(200).json({
+        message: "Rettungssanitäter/in verifiziert.",
+        userId: paramedicId
+    })
+}
+
 module.exports = {
     register,
     login,
     createParamedic,
+    verifyParamedic,
 };

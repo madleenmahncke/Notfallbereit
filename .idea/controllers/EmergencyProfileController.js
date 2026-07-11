@@ -101,8 +101,47 @@ const getEmergencyProfile = async (req, res) => {
     })
 }
 
+const getEmergencyProfileWithUuid = async (req, res) => {
+    const {uuid} = req.params;
+    const paramedicId = req.user.id;
+
+    const user = await userRepository.findById(paramedicId);
+    const emergencyProfile = await emergencyProfileRepository.findByUuid(uuid);
+
+    if (!user) {
+        return res.status(404).json({
+            message: 'Benutzer nicht gefunden.'
+        });
+    };
+
+    if (user.role != "PARAMEDIC") {
+        return res.status(400).send({
+            message: 'Benutzer nicht zugelassen.'
+        })
+    }
+
+    if (!emergencyProfile) {
+        return res.status(400).send({
+            message: 'Notfallprofil nicht gefunden.',
+        })
+    };
+
+    const allergies = await allergyRepository.findByEmergencyProfileId(emergencyProfile.id);
+    const medications = await medicationRepository.findByEmergencyProfileId(emergencyProfile.id);
+    const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(emergencyProfile.id);
+
+    res.status(201).json({
+        message: 'Notfallmappe von Benutzer ' + emergencyProfile.patient_id,
+        emergencyProfile: emergencyProfile,
+        allergies: allergies,
+        medications: medications,
+        emergencyContacts: emergencyContacts
+    })
+}
+
 module.exports = {
     createEmergencyProfile,
     updateEmergencyProfile,
     getEmergencyProfile,
+    getEmergencyProfileWithUuid
 }

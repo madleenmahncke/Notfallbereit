@@ -7,6 +7,7 @@ const requireRole = require("../middleware/requireRole");
 
 router.post('/:patientId', verifyToken, requireRole("PATIENT"), emergencyProfileController.createEmergencyProfile);
 router.put('/:patientId/:id', verifyToken, requireRole("PATIENT"), emergencyProfileController.updateEmergencyProfile);
-router.get('/:patientId/:id', verifyToken, requireRole("PATIENT", "PARAMEDIC"), emergencyProfileController.getEmergencyProfile)
+router.get('/qrCode/:uuid', verifyToken, requireRole("PARAMEDIC"), emergencyProfileController.getEmergencyProfileWithUuid);
+router.get('/:patientId/:id', verifyToken, requireRole("PATIENT"), emergencyProfileController.getEmergencyProfile);
 
 module.exports = router;
