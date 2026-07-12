@@ -4,7 +4,7 @@ const db = require("./db");
 // this user specifically is only created via app so it is ALWAYS a patient
 async function createUser(email, password, sessionCode) {
     const [result] = await db.query(
-        'INSERT INTO users (email, password_hash, role, session_code) VALUES (?, ?, ?)',
+        'INSERT INTO users (email, password_hash, role, session_code) VALUES (?, ?, ?, ?)',
         [email, password, 'PATIENT', sessionCode],
     );
 
