@@ -9,7 +9,7 @@ const createMedication = async (req, res) => {
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     };
@@ -41,13 +41,13 @@ const updateMedication = async (req, res) => {
     const medication = await medicationRepository.findById(id);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.'
         })
     };
 
     if (medication.profile_id != emergencyProfileId) {
-        return res.status(400).json({
+        return res.status(404).json({
             message: 'Medikament gehört nicht zu dieser Notfallmappe.'
         });
     }
@@ -77,19 +77,19 @@ const deleteMedication = async (req, res) => {
     const medication = await medicationRepository.findById(id);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
 
     if (!medication) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Medikament nicht gefunden.',
         })
     }
 
     if (medication.profile_id != emergencyProfileId) {
-        return res.status(400).json({
+        return res.status(404).json({
             message: 'Medikament gehört nicht zu dieser Notfallmappe.'
         });
     }
@@ -109,7 +109,7 @@ async function getMedications(emergencyProfileId, userId) {
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
@@ -117,7 +117,7 @@ async function getMedications(emergencyProfileId, userId) {
     const medications = await medicationRepository.findByEmergencyProfileId(emergencyProfileId);
 
     if (!medications) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Es wurden keine Medikamente gefunden.',
         })
     }

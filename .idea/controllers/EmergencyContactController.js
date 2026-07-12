@@ -10,14 +10,14 @@ const createEmergencyContact = async (req, res) => {
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     };
 
     if (!firstName || !lastName || !phoneNumber) {
         return res.status(400).send({
-            message: 'Vollständiger Name und Telefonnummer des Notfallkontakts werden benötigt.',
+            message: 'Vollständiger Name und Telefonnummer des Notfallkontakts sind Pflichtfelder.',
         })
     };
 
@@ -42,13 +42,13 @@ const updateEmergencyContact = async (req, res) => {
     const emergencyContact = await emergencyContactRepository.findById(id);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
 
     if (emergencyContact.profile_id != emergencyProfileId) {
-        return res.status(400).json({
+        return res.status(404).json({
             message: 'Notfallkontakt gehört nicht zu dieser Notfallmappe.'
         });
     }
@@ -73,19 +73,19 @@ const deleteEmergencyContact = async (req, res) => {
     const emergencyContact = await emergencyContactRepository.findById(id);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
 
     if (!emergencyContact) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallkontakt nicht gefunden.',
         })
     }
 
     if (emergencyContact.profile_id != emergencyProfileId) {
-        return res.status(400).json({
+        return res.status(404).json({
             message: 'Notfallkontakt gehört nicht zu dieser Notfallmappe.'
         })
     }
@@ -105,7 +105,7 @@ async function getEmergencyContacts(emergencyProfileId, userId) {
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
@@ -113,7 +113,7 @@ async function getEmergencyContacts(emergencyProfileId, userId) {
     const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(emergencyProfileId);
 
     if (!medications) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Es wurden keine Notfallkontakte gefunden.',
         })
     }

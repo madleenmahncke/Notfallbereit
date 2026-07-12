@@ -2,10 +2,10 @@ const db = require("./db");
 
 // creates a user with e-mail and password
 // this user specifically is only created via app so it is ALWAYS a patient
-async function createUser(email, password) {
+async function createUser(email, password, sessionCode) {
     const [result] = await db.query(
-        'INSERT INTO users (email, password_hash, role) VALUES (?, ?, ?)',
-        [email, password, 'PATIENT'],
+        'INSERT INTO users (email, password_hash, role, session_code) VALUES (?, ?, ?)',
+        [email, password, 'PATIENT', sessionCode],
     );
 
     return result.insertId;
@@ -66,6 +66,13 @@ async function updateUser(userId, email, password) {
     return result;
 }
 
+async function setSessionCode(sessionCode, userId) {
+    await db.query(
+        'UPDATE users SET session_code = ? WHERE id = ?',
+        [sessionCode, userId],
+    );
+}
+
 async function deleteUser(userId) {
     const [result] = await db.query(
         'DELETE FROM users WHERE id = ?',
@@ -83,5 +90,6 @@ module.exports = {
     findById,
     findByEmail,
     updateUser,
+    setSessionCode,
     deleteUser
 }

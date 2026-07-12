@@ -10,12 +10,16 @@ const createAllergy = async (req, res) => {
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     };
 
-    if (!name) {
+    // trim removes spaces in beginning and end
+    const trimmedName = name?.trim();
+    const trimmedNnotes = notes?.trim();
+
+    if (!trimmedName) {
         return res.status(400).send({
             message: 'Name der Allergie wird benötigt.',
         })
@@ -23,8 +27,8 @@ const createAllergy = async (req, res) => {
 
     const allergyId = await allergyRepository.createAllergy(
         emergencyProfileId,
-        name,
-        notes
+        trimmedName,
+        trimmedNnotes
     );
 
     res.status(201).json({
@@ -40,16 +44,26 @@ const updateAllergy = async (req, res) => {
     const allergy = await allergyRepository.findById(id);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
 
     if (allergy.profile_id != emergencyProfileId) {
-        return res.status(400).json({
+        return res.status(404).json({
             message: 'Allergie gehört nicht zu dieser Notfallmappe.'
         });
     }
+
+    // trim removes spaces in beginning and end
+    const trimmedName = name?.trim();
+    const trimmedNnotes = notes?.trim();
+
+    if (!trimmedName) {
+        return res.status(400).send({
+            message: 'Name der Allergie wird benötigt.',
+        })
+    };
 
     const allergyId = await allergyRepository.updateAllergy(
         id,
@@ -69,19 +83,19 @@ const deleteAllergy = async (req, res) => {
     const allergy = await allergyRepository.findById(id);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
 
     if (!allergy) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Allergie nicht gefunden.',
         })
     }
 
     if (allergy.profile_id != emergencyProfileId) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Allergie gehört nicht zu dieser Notfallmappe.'
         })
     }
@@ -103,7 +117,7 @@ async function getAllergies(emergencyProfileId, userId) {
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
 
     if (!emergencyProfile) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Notfallprofil nicht gefunden.',
         })
     }
@@ -111,7 +125,7 @@ async function getAllergies(emergencyProfileId, userId) {
     const allergies = await allergyRepository.findByEmergencyProfileId(emergencyProfileId);
 
     if (!allergies) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Es wurden keine Allergien gefunden.',
         })
     }

@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 
 // for validating e-mails to follow e-mail pattern
 const validator = require('validator');
+const {v4: uuidv4} = require("uuid");
 
 // checking for a safe password     Quelle: ChatGPT
 const passwordRegex =
@@ -17,7 +18,7 @@ const register = async (req, res) => {
     const user = await userRepository.findByEmail(email);
 
     if (user) {
-        return res.status(400).json({
+        return res.status(409).json({
             message: 'E-Mail-Adresse ist bereits vergeben.'
         })
     };
@@ -56,15 +57,19 @@ const register = async (req, res) => {
         12
     );
 
+    const sessionCode = uuidv4();
+
     const userId = await userRepository.createUser(
         email,
-        hashedPassword
+        hashedPassword,
+        sessionCode
     );
 
     const token = jwt.sign(
         {
             id: userId,
-            role: "PATIENT"
+            role: "PATIENT",
+            sessionCode: sessionCode
         },
         process.env.JWT_SECRET,
         {
@@ -72,7 +77,7 @@ const register = async (req, res) => {
         }
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Benutzer erstellt.',
         id: userId,
         token: token
@@ -86,7 +91,7 @@ const login = async (req, res) => {
     let emergencyProfileId;
 
     if (!user) {
-        return res.status(404).json({
+        return res.status(401).json({
             message: 'E-Mail oder Passwort sind falsch.'
         });
     };
@@ -112,10 +117,18 @@ const login = async (req, res) => {
         emergencyProfileId = emergencyProfile.id
     }
 
+    const sessionCode = uuidv4();
+
+    const session = await userRepository.setSessionCode(
+        sessionCode,
+        user.id
+    );
+
     const token = jwt.sign(
         {
             id: user.id,
-            role: user.role
+            role: user.role,
+            sessionCode: sessionCode
         },
         process.env.JWT_SECRET,
         {
@@ -124,7 +137,7 @@ const login = async (req, res) => {
     );
 
     res.status(200).json({
-        message: 'Benutzer eingeloggt',
+        message: 'Benutzer eingeloggt!',
         userId: user.id,
         hasEmergencyProfile: hasEmergencyProfile,
         emergencyProfileId: emergencyProfileId,
@@ -139,7 +152,7 @@ const createParamedic = async (req, res) => {
     const user = await userRepository.findByEmail(email);
 
     if (user) {
-        return res.status(400).json({
+        return res.status(409).json({
             message: 'E-Mail-Adresse ist bereits vergeben.'
         })
     };
@@ -172,7 +185,7 @@ const createParamedic = async (req, res) => {
         paramedicCode,
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Rettungssanitäter/in erstellt.',
         id: userId,
         temporaryPassword: temporaryPassword,
@@ -185,7 +198,7 @@ const verifyParamedic = async (req, res) => {
     const user = await userRepository.findById(paramedicId);
 
     if (!user) {
-        return res.status(404).json({
+        return res.status(401).json({
             message: 'E-Mail oder Passwort sind falsch.'
         });
     };

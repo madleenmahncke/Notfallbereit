@@ -1,6 +1,5 @@
 const emergencyProfileRepository = require('../database/EmergencyProfileRepository.js')
 const userRepository = require('../database/UserRepository.js')
-
 const allergyController = require('../controllers/AllergyController.js')
 const medicationController = require('../controllers/MedicationController.js')
 const emergencyContactController = require('../controllers/EmergencyContactController.js')
@@ -10,30 +9,42 @@ const emergencyContactRepository = require("../database/EmergencyContactReposito
 const {v4: uuidv4} = require("uuid");
 
 const createEmergencyProfile = async (req, res) => {
-    const {firstName, lastName, street, zipCode} = req.body;
+    const {firstName, lastName, streetNumber, location} = req.body;
     const patientId = req.user.id;
     const user = await userRepository.findById(patientId);
     const userId = parseInt(patientId);
 
     if (!user) {
         return res.status(404).json({
-            message: 'Benutzer nicht gefunden.'
+            message: 'Benutzer nicht gefunden!'
         });
     };
+
+    // trim removes spaces in beginning and end
+    const trimmedFirstName = firstName?.trim();
+    const trimmedLastName = lastName?.trim();
+    const trimmedStreetNumber = streetNumber?.trim();
+    const trimmedLocation = location?.trim();
+
+    if (!trimmedFirstName || !trimmedLastName || !trimmedStreetNumber || !trimmedLocation) {
+        return res.status(400).json({
+            message: 'Alle Felder müssen ausgefüllt werden!'
+        });
+    }
 
     const uuid = uuidv4();
 
     const profileId = await emergencyProfileRepository.createEmergencyProfile(
         userId,
-        firstName,
-        lastName,
-        street,
-        zipCode,
+        trimmedFirstName,
+        trimmedLastName,
+        trimmedStreetNumber,
+        trimmedLocation,
         uuid
     );
 
     res.status(201).json({
-        message: 'Notfallmappe erstellt für Benutzer ' + userId,
+        message: 'Notfallmappe erstellt!',
         userId: userId,
         emergencyProfileId: profileId
     });
@@ -41,7 +52,7 @@ const createEmergencyProfile = async (req, res) => {
 
 const updateEmergencyProfile = async (req, res) => {
     const {id} = req.params;
-    const {firstName, lastName, street, zipCode} = req.body;
+    const {firstName, lastName, streetNumber, location} = req.body;
     const patientId = req.user.id;
     const user = await userRepository.findById(patientId);
     const emergencyProfile = await emergencyProfileRepository.findById(id);
@@ -53,8 +64,8 @@ const updateEmergencyProfile = async (req, res) => {
     };
 
     if (!emergencyProfile) {
-        return res.status(400).send({
-            message: 'Notfallprofil nicht gefunden.',
+        return res.status(404).send({
+            message: 'Notfallmappe nicht gefunden.',
         })
     };
 
@@ -62,12 +73,12 @@ const updateEmergencyProfile = async (req, res) => {
         id,
         firstName,
         lastName,
-        street,
-        zipCode
+        streetNumber,
+        location
     );
 
     res.status(201).json({
-        message: 'Notfallmappe aktualisiert für Benutzer ' + patientId,
+        message: 'Notfallmappe aktualisiert!',
         emergencyProfileId: profileId,
     })
 }
@@ -85,8 +96,8 @@ const getEmergencyProfile = async (req, res) => {
     };
 
     if (!emergencyProfile) {
-        return res.status(400).send({
-            message: 'Notfallprofil nicht gefunden.',
+        return res.status(404).send({
+            message: 'Notfallmappe nicht gefunden.',
         })
     };
 
@@ -95,7 +106,7 @@ const getEmergencyProfile = async (req, res) => {
     const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(id);
 
     res.status(201).json({
-        message: 'Notfallmappe von Benutzer ' + patientId,
+        message: 'Notfallmappe gefunden!',
         emergencyProfile: emergencyProfile,
         allergies: allergies,
         medications: medications,
@@ -117,14 +128,14 @@ const getEmergencyProfileWithUuid = async (req, res) => {
     };
 
     if (user.role != "PARAMEDIC") {
-        return res.status(400).send({
+        return res.status(401).send({
             message: 'Benutzer nicht zugelassen.'
         })
     }
 
     if (!emergencyProfile) {
-        return res.status(400).send({
-            message: 'Notfallprofil nicht gefunden.',
+        return res.status(404).send({
+            message: 'Notfallmappe nicht gefunden.',
         })
     };
 
@@ -133,7 +144,7 @@ const getEmergencyProfileWithUuid = async (req, res) => {
     const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(emergencyProfile.id);
 
     res.status(201).json({
-        message: 'Notfallmappe von Benutzer ' + emergencyProfile.patient_id,
+        message: 'Notfallmappe gefunden!',
         emergencyProfile: emergencyProfile,
         allergies: allergies,
         medications: medications,

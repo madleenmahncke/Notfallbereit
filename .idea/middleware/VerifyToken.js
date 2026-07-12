@@ -5,6 +5,7 @@ function verifyToken(req, res, next) {
 
     if (!authHeader) {
         return res.status(401).json({
+            code: "NO_TOKEN",
             message: "Kein Token vorhanden."
         });
     }
@@ -21,6 +22,7 @@ function verifyToken(req, res, next) {
         next();
     } catch (err) {
         return res.status(401).json({
+            code: "TOKEN_EXPIRED",
             message: "Ungültiger oder abgelaufener Token."
         });
     }
