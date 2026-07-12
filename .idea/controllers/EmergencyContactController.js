@@ -1,6 +1,7 @@
 const emergencyContactRepository = require('../database/EmergencyContactRepository.js');
 const emergencyProfileRepository = require('../database/EmergencyProfileRepository');
 const allergyRepository = require("../database/AllergyRepository");
+const userRepository = require("../database/UserRepository");
 
 // TODO: add res for duplicate entry EmergencyContact in db
 const createEmergencyContact = async (req, res) => {
@@ -28,7 +29,7 @@ const createEmergencyContact = async (req, res) => {
         relationship
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Notfallkontakt erstellt für das Notfallprofil ' + emergencyProfileId,
         emergencyContactId: emergencyContactId
     });
@@ -60,7 +61,7 @@ const updateEmergencyContact = async (req, res) => {
         relationship
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Notfallkontakt aktualisiert für das Notfallprofil ' + emergencyProfileId,
         emergencyContactId: emergencyContactId
     })
@@ -68,7 +69,6 @@ const updateEmergencyContact = async (req, res) => {
 
 const deleteEmergencyContact = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
-    const {firstName, lastName, phoneNumber, relationship} = req.body;
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const emergencyContact = await emergencyContactRepository.findById(id);
 
@@ -91,9 +91,7 @@ const deleteEmergencyContact = async (req, res) => {
     }
 
     const emergencyContactId = await emergencyContactRepository.deleteEmergencyContact(
-        id,
-        firstName,
-        lastName
+        id
     )
 
     return res.status(200).json({
@@ -102,8 +100,30 @@ const deleteEmergencyContact = async (req, res) => {
     });
 }
 
+async function getEmergencyContacts(emergencyProfileId, userId) {
+    const user = await userRepository.findById(userId);
+    const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
+
+    if (!emergencyProfile) {
+        return res.status(400).send({
+            message: 'Notfallprofil nicht gefunden.',
+        })
+    }
+
+    const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(emergencyProfileId);
+
+    if (!medications) {
+        return res.status(400).send({
+            message: 'Es wurden keine Notfallkontakte gefunden.',
+        })
+    }
+
+    res.status(200).json(medications);
+}
+
 module.exports = {
     createEmergencyContact,
     updateEmergencyContact,
-    deleteEmergencyContact
+    deleteEmergencyContact,
+    getEmergencyContacts,
 }

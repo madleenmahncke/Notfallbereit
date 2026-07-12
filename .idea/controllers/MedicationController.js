@@ -1,6 +1,6 @@
 const medicationRepository = require('../database/MedicationRepository');
 const emergencyProfileRepository = require('../database/emergencyProfileRepository');
-const allergyRepository = require("../database/AllergyRepository");
+const userRepository = require("../database/UserRepository");
 
 // TODO: add res for duplicate entry medication in db
 const createMedication = async (req, res) => {
@@ -73,7 +73,6 @@ const updateMedication = async (req, res) => {
 
 const deleteMedication = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
-    const {name, dosage} = req.body;
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const medication = await medicationRepository.findById(id);
 
@@ -96,9 +95,7 @@ const deleteMedication = async (req, res) => {
     }
 
     const medicationId = await medicationRepository.deleteMedication(
-        id,
-        name,
-        dosage
+        id
     )
 
     return res.status(200).json({
@@ -107,8 +104,30 @@ const deleteMedication = async (req, res) => {
     });
 }
 
+async function getMedications(emergencyProfileId, userId) {
+    const user = await userRepository.findById(userId);
+    const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
+
+    if (!emergencyProfile) {
+        return res.status(400).send({
+            message: 'Notfallprofil nicht gefunden.',
+        })
+    }
+
+    const medications = await medicationRepository.findByEmergencyProfileId(emergencyProfileId);
+
+    if (!medications) {
+        return res.status(400).send({
+            message: 'Es wurden keine Medikamente gefunden.',
+        })
+    }
+
+    res.status(200).json(medications);
+}
+
 module.exports = {
     createMedication,
     updateMedication,
-    deleteMedication
+    deleteMedication,
+    getMedications
 }

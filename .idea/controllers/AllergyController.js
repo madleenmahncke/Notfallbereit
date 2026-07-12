@@ -27,7 +27,7 @@ const createAllergy = async (req, res) => {
         notes
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Allergie erstellt für das Notfallprofil ' + emergencyProfileId,
         allergyId: allergyId
     });
@@ -57,7 +57,7 @@ const updateAllergy = async (req, res) => {
         notes
     );
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'Allergie aktualisiert für das Notfallprofil ' + emergencyProfileId,
         allergyId: allergyId
     })
@@ -65,7 +65,6 @@ const updateAllergy = async (req, res) => {
 
 const deleteAllergy = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
-    const {name} = req.body;
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const allergy = await allergyRepository.findById(id);
 
@@ -87,19 +86,42 @@ const deleteAllergy = async (req, res) => {
         })
     }
 
-    const allergyId = await allergyRepository.deleteAllergy(
-        id,
-        name
+    const result = await allergyRepository.deleteAllergy(
+        id
     )
 
     return res.status(200).json({
         message: 'Allergie wurde gelöscht',
-        allergyId: allergyId
+        result: result,
+        allergyId: id,
+        emergencyProfileId: emergencyProfileId,
     });
+}
+
+async function getAllergies(emergencyProfileId, userId) {
+    const user = await userRepository.findById(userId);
+    const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
+
+    if (!emergencyProfile) {
+        return res.status(400).send({
+            message: 'Notfallprofil nicht gefunden.',
+        })
+    }
+
+    const allergies = await allergyRepository.findByEmergencyProfileId(emergencyProfileId);
+
+    if (!allergies) {
+        return res.status(400).send({
+            message: 'Es wurden keine Allergien gefunden.',
+        })
+    }
+
+    res.status(200).json(allergies);
 }
 
 module.exports = {
     createAllergy,
     updateAllergy,
     deleteAllergy,
+    getAllergies
 }

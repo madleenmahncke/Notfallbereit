@@ -2,7 +2,7 @@ const db = require("./DB");
 
 async function findById(emergencyProfileId) {
     const [rows] = await db.query(
-        'SELECT * FROM users WHERE id = ?',
+        'SELECT * FROM emergency_profiles WHERE id = ?',
         [emergencyProfileId],
     );
 
@@ -18,10 +18,19 @@ async function findByUserId(userId) {
     return rows[0];
 }
 
-async function createEmergencyProfile(userId, firstName, lastName, street, zipCode) {
+async function findByUuid(uuid) {
+    const [rows] = await db.query(
+        'SELECT * FROM emergency_profiles WHERE qr_code_uuid = ?',
+        [uuid],
+    )
+
+    return rows[0];
+}
+
+async function createEmergencyProfile(userId, firstName, lastName, street, zipCode, uuid) {
     const [result] = await db.query(
-        `INSERT INTO emergency_profiles (patient_id, first_name, last_name, street, zip_code) VALUES (?, ?, ?, ?, ?)`,
-        [userId, firstName, lastName, street, zipCode]
+        `INSERT INTO emergency_profiles (patient_id, first_name, last_name, street, zip_code, qr_code_uuid) VALUES (?, ?, ?, ?, ?, ?)`,
+        [userId, firstName, lastName, street, zipCode, uuid]
     );
 
     return result.insertId;
@@ -37,6 +46,7 @@ async function updateEmergencyProfile(emergencyProfileId, firstName, lastName, s
 module.exports = {
     findById,
     findByUserId,
+    findByUuid,
     createEmergencyProfile,
     updateEmergencyProfile,
 }
