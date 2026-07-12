@@ -5,7 +5,7 @@ const emergencyProfileController = require('../controllers/EmergencyProfileContr
 const verifyToken = require("../middleware/verifyToken");
 const requireRole = require("../middleware/requireRole");
 
-router.post('/:patientId', verifyToken, requireRole("PATIENT"), emergencyProfileController.createEmergencyProfile);
+router.post('/createEmergencyProfile', verifyToken, requireRole("PATIENT"), emergencyProfileController.createEmergencyProfile);
 router.put('/:patientId/:id', verifyToken, requireRole("PATIENT"), emergencyProfileController.updateEmergencyProfile);
 router.get('/qrCode/:uuid', verifyToken, requireRole("PARAMEDIC"), emergencyProfileController.getEmergencyProfileWithUuid);
 router.get('/:patientId/:id', verifyToken, requireRole("PATIENT"), emergencyProfileController.getEmergencyProfile);

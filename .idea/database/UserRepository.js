@@ -29,6 +29,15 @@ async function getParamedicCode(paramedicId) {
     return result[0].paramedic_code;
 }
 
+async function getEMail(id) {
+    const[result] = await db.query(
+        'SELECT email FROM users WHERE id = ?',
+        [id]
+    )
+
+    return result[0].email;
+}
+
 async function findById(userId) {
     const [rows] = await db.query(
         'SELECT * FROM users WHERE id = ?',
@@ -70,6 +79,7 @@ module.exports = {
     createUser,
     createParamedic,
     getParamedicCode,
+    getEMail,
     findById,
     findByEmail,
     updateUser,

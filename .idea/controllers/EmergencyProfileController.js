@@ -10,8 +10,8 @@ const emergencyContactRepository = require("../database/EmergencyContactReposito
 const {v4: uuidv4} = require("uuid");
 
 const createEmergencyProfile = async (req, res) => {
-    const {patientId} = req.params;
     const {firstName, lastName, street, zipCode} = req.body;
+    const patientId = req.user.id;
     const user = await userRepository.findById(patientId);
     const userId = parseInt(patientId);
 
@@ -40,8 +40,9 @@ const createEmergencyProfile = async (req, res) => {
 }
 
 const updateEmergencyProfile = async (req, res) => {
-    const {patientId, id} = req.params;
+    const {id} = req.params;
     const {firstName, lastName, street, zipCode} = req.body;
+    const patientId = req.user.id;
     const user = await userRepository.findById(patientId);
     const emergencyProfile = await emergencyProfileRepository.findById(id);
 
@@ -72,7 +73,8 @@ const updateEmergencyProfile = async (req, res) => {
 }
 
 const getEmergencyProfile = async (req, res) => {
-    const {patientId, id} = req.params;
+    const {id} = req.params;
+    const patientId = req.user.id;
     const user = await userRepository.findById(patientId);
     const emergencyProfile = await emergencyProfileRepository.findById(id);
 

@@ -61,9 +61,21 @@ const register = async (req, res) => {
         hashedPassword
     );
 
+    const token = jwt.sign(
+        {
+            id: userId,
+            role: "PATIENT"
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: process.env.JWT_EXPIRES_IN
+        }
+    );
+
     res.status(200).json({
         message: 'Benutzer erstellt.',
-        id: userId
+        id: userId,
+        token: token
     });
 };
 
