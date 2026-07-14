@@ -3,7 +3,6 @@ const emergencyProfileRepository = require('../database/EmergencyProfileReposito
 const userRepository = require("../database/UserRepository");
 const bcrypt = require("bcrypt");
 
-// TODO: add res for duplicate entry allergy in db
 const createAllergy = async (req, res) => {
     const {emergencyProfileId} = req.params;
     const {name, notes} = req.body;
@@ -40,6 +39,7 @@ const createAllergy = async (req, res) => {
 const updateAllergy = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
     const {name, notes} = req.body;
+
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const allergy = await allergyRepository.findById(id);
 
@@ -57,7 +57,7 @@ const updateAllergy = async (req, res) => {
 
     // trim removes spaces in beginning and end
     const trimmedName = name?.trim();
-    const trimmedNnotes = notes?.trim();
+    const trimmedNotes = notes?.trim();
 
     if (!trimmedName) {
         return res.status(400).send({

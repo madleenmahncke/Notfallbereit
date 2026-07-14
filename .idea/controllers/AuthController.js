@@ -15,7 +15,12 @@ const passwordRegex =
 
 const register = async (req, res) => {
     const {email, password, repeatedPassword} = req.body;
-    const user = await userRepository.findByEmail(email);
+
+    const trimmedEMail = email?.trim();
+    const trimmedPassword = password?.trim();
+    const trimmedRepeatedPassword = repeatedPassword?.trim();
+
+    const user = await userRepository.findByEmail(trimmedEMail);
 
     if (user) {
         return res.status(409).json({
@@ -23,20 +28,20 @@ const register = async (req, res) => {
         })
     };
 
-    if (password !== repeatedPassword) {
+    if (trimmedPassword !== trimmedRepeatedPassword) {
         return res.status(400).json({
             message: 'Passwörter stimmen nicht überein.'
         })
     }
 
-    if (!validator.isEmail(email)) {
+    if (!validator.isEmail(trimmedEMail)) {
         return res.status(400).send({
             message: 'Ungültige E-Mail-Adresse'
         })
     }
 
     // validates the given password for safety
-    if (!validator.isStrongPassword(password, {
+    if (!validator.isStrongPassword(trimmedPassword, {
         minLength: 12,
         minLowercase: 1,
         minUppercase: 1,
@@ -52,7 +57,7 @@ const register = async (req, res) => {
 
     // hashes a password
     const hashedPassword = await bcrypt.hash(
-        password,
+        trimmedPassword,
         // TODO: explaining what salt means
         12
     );
@@ -60,7 +65,7 @@ const register = async (req, res) => {
     const sessionCode = uuidv4();
 
     const userId = await userRepository.createUser(
-        email,
+        trimmedEMail,
         hashedPassword,
         sessionCode
     );
@@ -86,7 +91,11 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const {email, password} = req.body;
-    const user = await userRepository.findByEmail(email);
+
+    const trimmedEMail = email?.trim();
+    const trimmedPassword = password?.trim();
+
+    const user = await userRepository.findByEmail(trimmedEMail);
     let hasEmergencyProfile;
     let emergencyProfileId;
 
@@ -97,7 +106,7 @@ const login = async (req, res) => {
     };
 
     const validPassword = await bcrypt.compare(
-        password,
+        trimmedPassword,
         user.password_hash
     );
 
@@ -149,7 +158,11 @@ const login = async (req, res) => {
 
 const createParamedic = async (req, res) => {
     const {email, paramedicCode} = req.body;
-    const user = await userRepository.findByEmail(email);
+
+    const trimmedEMail = email?.trim();
+    const trimmedParamedicCode = paramedicCode?.trim();
+
+    const user = await userRepository.findByEmail(trimmedEMail);
 
     if (user) {
         return res.status(409).json({
@@ -157,14 +170,14 @@ const createParamedic = async (req, res) => {
         })
     };
 
-    if (!validator.isEmail(email)) {
+    if (!validator.isEmail(trimmedEMail)) {
         return res.status(400).send({
             message: 'Ungültige E-Mail-Adresse.'
         })
     }
 
     // this if statement is build by ChatGPT
-    if (!/^\d{6}$/.test(String(paramedicCode))) {
+    if (!/^\d{6}$/.test(String(trimmedParamedicCode))) {
         return res.status(400).send({
             message: 'Kein gültiger Zugehörigkeitscode.',
         })
@@ -180,9 +193,9 @@ const createParamedic = async (req, res) => {
     );
 
     const userId = await userRepository.createParamedic(
-        email,
+        trimmedEMail,
         hashedPassword,
-        paramedicCode,
+        trimmedParamedicCode,
     );
 
     res.status(201).json({
@@ -194,8 +207,9 @@ const createParamedic = async (req, res) => {
 
 const verifyParamedic = async (req, res) => {
     const {paramedicId, verificationCode} = req.body;
-
     const user = await userRepository.findById(paramedicId);
+
+    const trimmedVerificationCode = verificationCode?.trim();
 
     if (!user) {
         return res.status(401).json({
@@ -203,7 +217,7 @@ const verifyParamedic = async (req, res) => {
         });
     };
 
-    if (verificationCode.length === 0 || verificationCode.length > 6 || verificationCode.length < 6) {
+    if (trimmedVerificationCode.length === 0 || trimmedVerificationCode.length > 6 || trimmedVerificationCode.length < 6) {
         return res.status(400).send({
             message: 'Verifizierungscode ungültig!'
         })
@@ -211,7 +225,7 @@ const verifyParamedic = async (req, res) => {
 
     const paramedicCodeFromDB = await userRepository.getParamedicCode(paramedicId);
 
-    if (verificationCode != paramedicCodeFromDB) {
+    if (trimmedVerificationCode != paramedicCodeFromDB) {
         return res.status(400).send({
             message: "Verifizierungscode ungültig!"
         })

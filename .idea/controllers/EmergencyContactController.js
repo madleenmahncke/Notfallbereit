@@ -3,7 +3,6 @@ const emergencyProfileRepository = require('../database/EmergencyProfileReposito
 const allergyRepository = require("../database/AllergyRepository");
 const userRepository = require("../database/UserRepository");
 
-// TODO: add res for duplicate entry EmergencyContact in db
 const createEmergencyContact = async (req, res) => {
     const {emergencyProfileId} = req.params;
     const {firstName, lastName, phoneNumber, relationship} = req.body;
@@ -15,7 +14,12 @@ const createEmergencyContact = async (req, res) => {
         })
     };
 
-    if (!firstName || !lastName || !phoneNumber) {
+    const trimmedFirstName = firstName?.trim();
+    const trimmedLastName = lastName?.trim();
+    const trimmedPhoneNumber = phoneNumber?.trim();
+    const trimmedRelationship = relationship?.trim();
+
+    if (!trimmedFirstName || !trimmedLastName || !trimmedPhoneNumber) {
         return res.status(400).send({
             message: 'Vollständiger Name und Telefonnummer des Notfallkontakts sind Pflichtfelder.',
         })
@@ -23,10 +27,10 @@ const createEmergencyContact = async (req, res) => {
 
     const emergencyContactId = await emergencyContactRepository.createEmergencyContact(
         emergencyProfileId,
-        firstName,
-        lastName,
-        phoneNumber,
-        relationship
+        trimmedFirstName,
+        trimmedLastName,
+        trimmedPhoneNumber,
+        trimmedRelationship
     );
 
     res.status(201).json({
@@ -46,6 +50,17 @@ const updateEmergencyContact = async (req, res) => {
             message: 'Notfallprofil nicht gefunden.',
         })
     }
+
+    const trimmedFirstName = firstName?.trim();
+    const trimmedLastName = lastName?.trim();
+    const trimmedPhoneNumber = phoneNumber?.trim();
+    const trimmedRelationship = relationship?.trim();
+
+    if (!trimmedFirstName || !trimmedLastName || !trimmedPhoneNumber) {
+        return res.status(400).send({
+            message: 'Vollständiger Name und Telefonnummer des Notfallkontakts sind Pflichtfelder.',
+        })
+    };
 
     if (emergencyContact.profile_id != emergencyProfileId) {
         return res.status(404).json({
