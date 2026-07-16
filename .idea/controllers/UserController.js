@@ -2,6 +2,13 @@ const userRepository = require('../database/UserRepository');
 // for hashing passwords
 const bcrypt = require('bcrypt');
 
+/**
+ * Updates an existing user
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const updateUser = async (req, res) => {
     const id = req.user.id;
     const {email, password} = req.body;
@@ -14,6 +21,7 @@ const updateUser = async (req, res) => {
         });
     };
 
+    // trim removes spaces in beginning and end
     const trimmedEMail = email?.trim();
     const trimmedPassword = password?.trim();
 
@@ -26,7 +34,7 @@ const updateUser = async (req, res) => {
     // hashes a password
     const hashedPassword = await bcrypt.hash(
         trimmedPassword,
-        // TODO: explaining what salt means
+        // salt rounds
         12
     );
 
@@ -42,6 +50,13 @@ const updateUser = async (req, res) => {
     });
 }
 
+/**
+ * Deletes an existing user
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const deleteUser = async (req, res) => {
     const id = req.user.id;
     const user = await userRepository.findById(id);
@@ -62,6 +77,13 @@ const deleteUser = async (req, res) => {
     });
 }
 
+/**
+ * Gets an exisiting user
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const getUser = async (req, res) => {
     const userId = req.user.id;
 

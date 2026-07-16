@@ -1,3 +1,6 @@
+/**
+ * represents an user
+ */
 class User {
     constructor(id, email, passwordHash) {
         this.id = id;

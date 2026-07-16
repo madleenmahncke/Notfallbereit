@@ -9,9 +9,17 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 const {v4: uuidv4} = require("uuid");
 
+/**
+ * Register an new user
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const register = async (req, res) => {
     const {email, password, repeatedPassword} = req.body;
 
+    // trim removes spaces in beginning and end
     const trimmedEMail = email?.trim();
     const trimmedPassword = password?.trim();
     const trimmedRepeatedPassword = repeatedPassword?.trim();
@@ -54,7 +62,7 @@ const register = async (req, res) => {
     // hashes a password
     const hashedPassword = await bcrypt.hash(
         trimmedPassword,
-        // TODO: explaining what salt means
+        // salt rounds
         12
     );
 
@@ -85,9 +93,17 @@ const register = async (req, res) => {
     });
 };
 
+/**
+ * login for an existing user
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const login = async (req, res) => {
     const {email, password} = req.body;
 
+    // trim removes spaces in beginning and end
     const trimmedEMail = email?.trim();
     const trimmedPassword = password?.trim();
 
@@ -101,6 +117,7 @@ const login = async (req, res) => {
         });
     };
 
+    // verify password
     const validPassword = await bcrypt.compare(
         trimmedPassword,
         user.password_hash
@@ -122,6 +139,7 @@ const login = async (req, res) => {
         emergencyProfileId = emergencyProfile.id
     }
 
+    // generate new session
     const sessionCode = uuidv4();
 
     const session = await userRepository.setSessionCode(
@@ -152,9 +170,17 @@ const login = async (req, res) => {
     });
 }
 
+/**
+ * creates a new paramedic
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const createParamedic = async (req, res) => {
     const {email, paramedicCode} = req.body;
 
+    // trim removes spaces in beginning and end
     const trimmedEMail = email?.trim();
     const trimmedParamedicCode = paramedicCode?.trim();
 
@@ -179,12 +205,13 @@ const createParamedic = async (req, res) => {
         })
     }
 
+    // generate new random password
     const temporaryPassword = Math.random().toString(36).slice(-10);
 
     // hashes a password
     const hashedPassword = await bcrypt.hash(
         temporaryPassword,
-        // TODO: explaining what salt means
+        // salt rounds
         12
     );
 
@@ -201,10 +228,19 @@ const createParamedic = async (req, res) => {
     });
 };
 
+/**
+ * verifies a existing paramedic
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const verifyParamedic = async (req, res) => {
     const {paramedicId, verificationCode} = req.body;
+
     const user = await userRepository.findById(paramedicId);
 
+    // trim removes spaces in beginning and end
     const trimmedVerificationCode = verificationCode?.trim();
 
     if (!user) {
@@ -213,6 +249,7 @@ const verifyParamedic = async (req, res) => {
         });
     };
 
+    // check code length
     if (trimmedVerificationCode.length === 0 || trimmedVerificationCode.length > 6 || trimmedVerificationCode.length < 6) {
         return res.status(400).send({
             message: 'Verifizierungscode ungültig!'

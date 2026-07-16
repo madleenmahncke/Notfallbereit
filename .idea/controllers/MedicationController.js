@@ -2,9 +2,17 @@ const medicationRepository = require('../database/MedicationRepository');
 const emergencyProfileRepository = require('../database/emergencyProfileRepository');
 const userRepository = require("../database/UserRepository");
 
+/**
+ * Creates a new medication for an emergency profile
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const createMedication = async (req, res) => {
     const {emergencyProfileId} = req.params;
     const {name, dosage, notes} = req.body;
+
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
 
     if (!emergencyProfile) {
@@ -13,6 +21,7 @@ const createMedication = async (req, res) => {
         })
     };
 
+    // trim removes spaces in beginning and end
     const trimmedName = name?.trim();
     const trimmedDosage = dosage?.trim();
 
@@ -35,9 +44,17 @@ const createMedication = async (req, res) => {
     });
 }
 
+/**
+ * Updates a existing medication
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const updateMedication = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
     const {name, dosage, notes} = req.body;
+
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const medication = await medicationRepository.findById(id);
 
@@ -47,12 +64,14 @@ const updateMedication = async (req, res) => {
         })
     };
 
+    // ensure medication belongs to the profile
     if (medication.profile_id != emergencyProfileId) {
         return res.status(404).json({
             message: 'Medikament gehört nicht zu dieser Notfallmappe.'
         });
     }
 
+    // trim removes spaces in beginning and end
     const trimmedName = name?.trim();
     const trimmedDosage = dosage?.trim();
 
@@ -75,8 +94,16 @@ const updateMedication = async (req, res) => {
     });
 }
 
+/**
+ * Deletes a existing medication
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const deleteMedication = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
+
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const medication = await medicationRepository.findById(id);
 
@@ -92,6 +119,7 @@ const deleteMedication = async (req, res) => {
         })
     }
 
+    // ensure medication belongs to the profile
     if (medication.profile_id != emergencyProfileId) {
         return res.status(404).json({
             message: 'Medikament gehört nicht zu dieser Notfallmappe.'
@@ -108,6 +136,13 @@ const deleteMedication = async (req, res) => {
     });
 }
 
+/**
+ * Gets all exisiting medications
+ *
+ * @param emergencyProfileId
+ * @param userId
+ * @returns {Promise<*>}
+ */
 async function getMedications(emergencyProfileId, userId) {
     const user = await userRepository.findById(userId);
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);

@@ -1,8 +1,14 @@
 const emergencyContactRepository = require('../database/EmergencyContactRepository.js');
 const emergencyProfileRepository = require('../database/EmergencyProfileRepository');
-const allergyRepository = require("../database/AllergyRepository");
 const userRepository = require("../database/UserRepository");
 
+/**
+ * creates a new emergency contact
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const createEmergencyContact = async (req, res) => {
     const {emergencyProfileId} = req.params;
     const {firstName, lastName, phoneNumber, relationship} = req.body;
@@ -14,6 +20,7 @@ const createEmergencyContact = async (req, res) => {
         })
     };
 
+    // trim removes spaces in beginning and end
     const trimmedFirstName = firstName?.trim();
     const trimmedLastName = lastName?.trim();
     const trimmedPhoneNumber = phoneNumber?.trim();
@@ -39,9 +46,17 @@ const createEmergencyContact = async (req, res) => {
     });
 }
 
+/**
+ * updates an exisiting emergency contact
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const updateEmergencyContact = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
     const {firstName, lastName, phoneNumber, relationship} = req.body;
+
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const emergencyContact = await emergencyContactRepository.findById(id);
 
@@ -51,6 +66,7 @@ const updateEmergencyContact = async (req, res) => {
         })
     }
 
+    // trim removes spaces in beginning and end
     const trimmedFirstName = firstName?.trim();
     const trimmedLastName = lastName?.trim();
     const trimmedPhoneNumber = phoneNumber?.trim();
@@ -62,6 +78,7 @@ const updateEmergencyContact = async (req, res) => {
         })
     };
 
+    // ensures contact belongs to profile
     if (emergencyContact.profile_id != emergencyProfileId) {
         return res.status(404).json({
             message: 'Notfallkontakt gehört nicht zu dieser Notfallmappe.'
@@ -82,8 +99,16 @@ const updateEmergencyContact = async (req, res) => {
     })
 }
 
+/**
+ * deletes an exisiting emergency contact
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const deleteEmergencyContact = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
+
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const emergencyContact = await emergencyContactRepository.findById(id);
 
@@ -99,6 +124,7 @@ const deleteEmergencyContact = async (req, res) => {
         })
     }
 
+    // ensures contact belongs to profile
     if (emergencyContact.profile_id != emergencyProfileId) {
         return res.status(404).json({
             message: 'Notfallkontakt gehört nicht zu dieser Notfallmappe.'
@@ -115,6 +141,13 @@ const deleteEmergencyContact = async (req, res) => {
     });
 }
 
+/**
+ * gets all exisiting emergency contacts
+ *
+ * @param emergencyProfileId
+ * @param userId
+ * @returns {Promise<*>}
+ */
 async function getEmergencyContacts(emergencyProfileId, userId) {
     const user = await userRepository.findById(userId);
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);

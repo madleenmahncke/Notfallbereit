@@ -1,3 +1,6 @@
+/**
+ * represents a medication
+ */
 class Medication {
     constructor(id, name, dosage, notes) {
         this.id = id;

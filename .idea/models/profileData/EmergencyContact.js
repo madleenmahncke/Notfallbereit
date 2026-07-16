@@ -1,3 +1,6 @@
+/**
+ * represents an emergency contact
+ */
 class EmergencyContact {
     constructor(name, email, phoneNumber) {
         this.name = name;

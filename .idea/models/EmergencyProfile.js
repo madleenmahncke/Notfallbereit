@@ -1,3 +1,6 @@
+/**
+ * represents an emergency profile
+ */
 class EmergencyProfile {
     constructor(id, firstName, lastName, birthDate) {
         this.id = id;

@@ -1,6 +1,12 @@
+/**
+ * checks if the authenticated user has one of the required roles
+ *
+ * @param {...string} roles
+ * @returns {Function}
+ */
 function requireRole(...roles) {
     return (req, res, next) => {
-        // req.user wurde bereits von verifyToken gesetzt
+        // req.user was already set in verifyToken
         if (!req.user) {
             return res.status(401).json({
                 message: "Nicht authentifiziert."

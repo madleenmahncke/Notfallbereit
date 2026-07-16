@@ -1,5 +1,13 @@
 const jwt = require("jsonwebtoken");
 
+/**
+ * verifies a jwt and attaches the user to the request
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {void}
+ */
 function verifyToken(req, res, next) {
     const authHeader = req.headers.authorization;
 

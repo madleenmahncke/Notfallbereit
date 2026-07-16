@@ -3,6 +3,13 @@ const emergencyProfileRepository = require('../database/EmergencyProfileReposito
 const userRepository = require("../database/UserRepository");
 const bcrypt = require("bcrypt");
 
+/**
+ * Creates a new allergy for an emergency profile
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const createAllergy = async (req, res) => {
     const {emergencyProfileId} = req.params;
     const {name, notes} = req.body;
@@ -36,6 +43,13 @@ const createAllergy = async (req, res) => {
     });
 }
 
+/**
+ * Updates an existing allergy
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const updateAllergy = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
     const {name, notes} = req.body;
@@ -49,6 +63,7 @@ const updateAllergy = async (req, res) => {
         })
     }
 
+    // ensure allergy belongs to the profile
     if (allergy.profile_id != emergencyProfileId) {
         return res.status(404).json({
             message: 'Allergie gehört nicht zu dieser Notfallmappe.'
@@ -77,8 +92,16 @@ const updateAllergy = async (req, res) => {
     })
 }
 
+/**
+ * Deletes an existing allergy
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const deleteAllergy = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
+
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);
     const allergy = await allergyRepository.findById(id);
 
@@ -94,6 +117,7 @@ const deleteAllergy = async (req, res) => {
         })
     }
 
+    // ensures allergy belongs to profile
     if (allergy.profile_id != emergencyProfileId) {
         return res.status(404).send({
             message: 'Allergie gehört nicht zu dieser Notfallmappe.'
@@ -112,6 +136,13 @@ const deleteAllergy = async (req, res) => {
     });
 }
 
+/**
+ * Gets all exisiting allergies
+ *
+ * @param emergencyProfileId
+ * @param userId
+ * @returns {Promise<*>}
+ */
 async function getAllergies(emergencyProfileId, userId) {
     const user = await userRepository.findById(userId);
     const emergencyProfile = await emergencyProfileRepository.findById(emergencyProfileId);

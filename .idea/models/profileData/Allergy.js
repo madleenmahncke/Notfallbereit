@@ -1,3 +1,6 @@
+/**
+ * represents an allergy
+ */
 class Allergy {
     constructor(id, name, severity, notes) {
         this.id = id;

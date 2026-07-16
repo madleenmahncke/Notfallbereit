@@ -8,9 +8,17 @@ const medicationRepository = require("../database/MedicationRepository");
 const emergencyContactRepository = require("../database/EmergencyContactRepository");
 const {v4: uuidv4} = require("uuid");
 
+/**
+ * creates a new emergency profile
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const createEmergencyProfile = async (req, res) => {
     const {firstName, lastName, streetNumber, location} = req.body;
     const patientId = req.user.id;
+
     const user = await userRepository.findById(patientId);
     const userId = parseInt(patientId);
 
@@ -32,6 +40,7 @@ const createEmergencyProfile = async (req, res) => {
         });
     }
 
+    // generates new uuid
     const uuid = uuidv4();
 
     const profileId = await emergencyProfileRepository.createEmergencyProfile(
@@ -50,10 +59,18 @@ const createEmergencyProfile = async (req, res) => {
     });
 }
 
+/**
+ * updates an exisiting emergency profile
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const updateEmergencyProfile = async (req, res) => {
     const {id} = req.params;
     const {firstName, lastName, streetNumber, location} = req.body;
     const patientId = req.user.id;
+
     const user = await userRepository.findById(patientId);
     const emergencyProfile = await emergencyProfileRepository.findById(id);
 
@@ -83,9 +100,17 @@ const updateEmergencyProfile = async (req, res) => {
     })
 }
 
+/**
+ * deletes an exisiting emergency profile
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const getEmergencyProfile = async (req, res) => {
     const {id} = req.params;
     const patientId = req.user.id;
+
     const user = await userRepository.findById(patientId);
     const emergencyProfile = await emergencyProfileRepository.findById(id);
 
@@ -114,6 +139,13 @@ const getEmergencyProfile = async (req, res) => {
     })
 }
 
+/**
+ * gets an exisiting emergency profile via uuid
+ *
+ * @param req Express request object
+ * @param res Express response object
+ * @returns {Promise<*>}
+ */
 const getEmergencyProfileWithUuid = async (req, res) => {
     const {uuid} = req.params;
     const paramedicId = req.user.id;
@@ -127,6 +159,7 @@ const getEmergencyProfileWithUuid = async (req, res) => {
         });
     };
 
+    // only paramedics can get a emergency profile via uuid
     if (user.role != "PARAMEDIC") {
         return res.status(401).send({
             message: 'Benutzer nicht zugelassen.'
@@ -139,6 +172,7 @@ const getEmergencyProfileWithUuid = async (req, res) => {
         })
     };
 
+    // load data
     const allergies = await allergyRepository.findByEmergencyProfileId(emergencyProfile.id);
     const medications = await medicationRepository.findByEmergencyProfileId(emergencyProfile.id);
     const emergencyContacts = await emergencyContactRepository.findByEmergencyProfileId(emergencyProfile.id);
