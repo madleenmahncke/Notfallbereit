@@ -9,10 +9,6 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 const {v4: uuidv4} = require("uuid");
 
-// checking for a safe password     Quelle: ChatGPT
-const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{12,}$/;
-
 const register = async (req, res) => {
     const {email, password, repeatedPassword} = req.body;
     const user = await userRepository.findByEmail(email);
