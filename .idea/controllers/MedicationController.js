@@ -2,7 +2,6 @@ const medicationRepository = require('../database/MedicationRepository');
 const emergencyProfileRepository = require('../database/emergencyProfileRepository');
 const userRepository = require("../database/UserRepository");
 
-// TODO: add res for duplicate entry medication in db
 const createMedication = async (req, res) => {
     const {emergencyProfileId} = req.params;
     const {name, dosage, notes} = req.body;
@@ -14,18 +13,21 @@ const createMedication = async (req, res) => {
         })
     };
 
-    if (!name || !dosage) {
+    const trimmedName = name?.trim();
+    const trimmedDosage = dosage?.trim();
+
+    if (!trimmedName || !trimmedDosage) {
         return res.status(400).json({
-            error: 'Medikamentenname wird benötigt.',
+            error: 'Medikamentenname und -dosis werden benötigt.',
         })
     };
 
     const medicationId = await medicationRepository.createMedication(
-            emergencyProfileId,
-            name,
-            dosage,
-            notes
-        );
+        emergencyProfileId,
+        trimmedName,
+        trimmedDosage,
+        notes
+    );
 
     res.status(201).json({
         message: 'Medikament erstellt für das Notfallprofil ' + emergencyProfileId,
@@ -33,7 +35,6 @@ const createMedication = async (req, res) => {
     });
 }
 
-// TODO: add res for duplicate entry medication in db
 const updateMedication = async (req, res) => {
     const {emergencyProfileId, id} = req.params;
     const {name, dosage, notes} = req.body;
@@ -52,16 +53,19 @@ const updateMedication = async (req, res) => {
         });
     }
 
-    if (!name || !dosage) {
+    const trimmedName = name?.trim();
+    const trimmedDosage = dosage?.trim();
+
+    if (!trimmedName || !trimmedDosage) {
         return res.status(400).json({
-            error: 'Medikamentenname wird benötigt.',
+            error: 'Medikamentenname und -dosis werden benötigt.',
         })
     };
 
     const medicationId = await medicationRepository.updateMedication(
         id,
-        name,
-        dosage,
+        trimmedName,
+        trimmedDosage,
         notes
     );
 

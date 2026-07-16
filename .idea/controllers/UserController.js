@@ -14,16 +14,25 @@ const updateUser = async (req, res) => {
         });
     };
 
+    const trimmedEMail = email?.trim();
+    const trimmedPassword = password?.trim();
+
+    if (!trimmedEMail || !trimmedPassword) {
+        return res.status(400).send({
+            message: 'E-Mail und Passwort werden benötigt.',
+        })
+    };
+
     // hashes a password
     const hashedPassword = await bcrypt.hash(
-        password,
+        trimmedPassword,
         // TODO: explaining what salt means
         12
     );
 
     const userId = await userRepository.updateUser(
         id,
-        email,
+        trimmedEMail,
         hashedPassword,
     );
 
