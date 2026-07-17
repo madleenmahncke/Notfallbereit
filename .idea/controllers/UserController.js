@@ -13,6 +13,7 @@ const validator = require("validator");
 const updateUser = async (req, res) => {
     const id = req.user.id;
     const {email, password, repeatedPassword} = req.body;
+
     const user = await userRepository.findById(id);
 
     // checks if user exists

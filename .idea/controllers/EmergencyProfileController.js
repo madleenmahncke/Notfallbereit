@@ -94,7 +94,7 @@ const updateEmergencyProfile = async (req, res) => {
         location
     );
 
-    res.status(201).json({
+    res.status(200).json({
         message: 'Notfallmappe aktualisiert!',
         emergencyProfileId: id,
     })
