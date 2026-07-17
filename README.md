@@ -6,12 +6,23 @@ Before running the application, make sure the following software is installed:
 
 * Flutter SDK
 * Dart SDK
-* Android Studio or Visual Studio Code
-* Android Emulator or a physical Android device
+* Visual Studio Code or a different code editor
+* and may be nice to test mobile devices: Android Studio
 
 ## Installation
 
-Clone the repository and navigate to the Flutter project directory.
+If needed, create a directory:
+
+```bash
+mkdir notfallbereit
+cd notfallbereit
+```
+
+Clone the repository:
+
+```bash
+git clone RELEASE
+```
 
 Clean previous build files:
 
@@ -36,26 +47,13 @@ flutter devices
 Run the application on a specific device:
 
 ```bash
-flutter run -d <device-id>
-```
-
-Example:
-
-```bash
-flutter run -d emulator-5554
+flutter run -d <device>
 ```
 
 ## Android Studio
 
-1. Open the Flutter project in Android Studio.
-2. Wait until Gradle synchronization has finished.
-3. Open the integrated terminal and run:
-
+1. Open the Android Studio application and select your emulated device
+2. Open the VS-Code terminal and run:
 ```bash
-flutter pub get
-```
-
-4. Start an Android emulator or connect a physical Android device.
-5. Select the target device from the toolbar.
-6. Click **Run** or press **Shift + F10** to launch the application.
+flutter run -d
 ```
