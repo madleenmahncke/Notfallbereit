@@ -1,22 +1,22 @@
-# Notfallbereit – Flutter Frontend
+# Notfallbereit – Node.js Backend
 
 <details>
 <summary>Click here for more information about Notfallbereit</summary>
-  
-> Notfallbereit is a digital emergency folder for everyone.
+
+> The backend provides the REST API for the Notfallbereit application.
 >
-> You can save health information for an emergency. Paramedics can scan your emergency profile via QR-Code.
+> It manages user authentication, emergency profiles, allergies, medications, emergency contacts, QR code access, and communication with the MySQL database.
 
 </details>
 
 ## Requirements
 
-Before running the application, make sure the following software is installed:
+Before running the backend, make sure the following software is installed:
 
-* Flutter SDK
-* Dart SDK
-* Visual Studio Code or a different code editor
-* and may be nice to test mobile devices: Android Studio
+* Node.js
+* npm
+* MySQL Server
+* WebStorm or another code editor
 
 ## Installation
 
@@ -33,36 +33,55 @@ Clone the repository:
 git clone RELEASE
 ```
 
-Clean previous build files:
-
-```bash
-flutter clean
-```
-
 Install all required dependencies:
 
 ```bash
-flutter pub get
+npm install
 ```
 
-## Running the application
+This command installs all packages listed in the `package.json` file, including:
 
-Display all available devices:
+- express
+- mysql2
+- bcrypt
+- jsonwebtoken
+- dotenv
+- bcrypt
+- uuid
+- validator
+
+## Database
+
+Before starting the backend, make sure that:
+
+- the MySQL server is running,
+- the required database has been created,
+- the database configuration in the `..\database\**DB.js**` file matches your local MySQL installation.
+
+## Running the server
+
+Start the backend:
 
 ```bash
-flutter devices
+npm start
 ```
 
-Run the application on a specific device:
+## Useful npm Commands
+
+Install project dependencies:
 
 ```bash
-flutter run -d <device>
+npm install
 ```
 
-## Android Studio
+Install a new package:
 
-1. Open the Android Studio application and select your emulated device
-2. Open the VS-Code terminal and run:
 ```bash
-flutter run -d
+npm install <package-name>
+```
+
+Update installed packages:
+
+```bash
+npm update
 ```
