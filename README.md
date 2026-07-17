@@ -11,7 +11,7 @@
 
 ## Dev Notes
 
-The SQL statement to initalize the database can be found in `...\database`.
+The SQL statement to initalize the database can be found in `.../database/init_database.sql`.
 
 ## Requirements
 
@@ -60,7 +60,7 @@ Before starting the backend, make sure that:
 
 - the MySQL server is running,
 - the required database has been created,
-- the database configuration in the `...\database\DB.js` file matches your local MySQL installation.
+- the database configuration in the `.../database\DB.js` file matches your local MySQL installation.
 
 ## Running the server
 
