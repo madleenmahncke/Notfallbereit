@@ -1,5 +1,10 @@
 # Notfallbereit – Flutter Frontend
 
+<details>
+<summary>Click here to expand</summary>
+This is the hidden content that will show up when the block is expanded.
+</details>
+
 ## Requirements
 
 Before running the application, make sure the following software is installed:
