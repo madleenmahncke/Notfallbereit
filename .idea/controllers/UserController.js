@@ -1,6 +1,7 @@
 const userRepository = require('../database/UserRepository');
 // for hashing passwords
 const bcrypt = require('bcrypt');
+const validator = require("validator");
 
 /**
  * Updates an existing user
@@ -11,7 +12,7 @@ const bcrypt = require('bcrypt');
  */
 const updateUser = async (req, res) => {
     const id = req.user.id;
-    const {email, password} = req.body;
+    const {email, password, repeatedPassword} = req.body;
     const user = await userRepository.findById(id);
 
     // checks if user exists
@@ -24,12 +25,48 @@ const updateUser = async (req, res) => {
     // trim removes spaces in beginning and end
     const trimmedEMail = email?.trim();
     const trimmedPassword = password?.trim();
+    const trimmedRepeatedPassword = repeatedPassword?.trim();
+
+    const userByEmail = await userRepository.findByEmail(trimmedEMail);
+
+    if (userByEmail) {
+        return res.status(409).json({
+            message: 'E-Mail-Adresse ist bereits vergeben.'
+        })
+    };
 
     if (!trimmedEMail || !trimmedPassword) {
         return res.status(400).send({
             message: 'E-Mail und Passwort werden benötigt.',
         })
     };
+
+    if (trimmedPassword !== trimmedRepeatedPassword) {
+        return res.status(400).json({
+            message: 'Passwörter stimmen nicht überein.'
+        })
+    }
+
+    if (!validator.isEmail(trimmedEMail)) {
+        return res.status(400).send({
+            message: 'Ungültige E-Mail-Adresse'
+        })
+    }
+
+    // validates the given password for safety
+    if (!validator.isStrongPassword(trimmedPassword, {
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+
+    })) {
+        return res.status(400).send({
+            message: 'Passwort erfüllt die Anforderungen nicht! Das Passwort muss mindestens 12 Zeichen, jeweils einen ' +
+                'Klein- und Großbuchstaben sowie jeweils mindestens ein Sonderzeichen und eine Zahl enthalten!'
+        });
+    }
 
     // hashes a password
     const hashedPassword = await bcrypt.hash(

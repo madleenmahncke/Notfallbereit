@@ -86,7 +86,7 @@ const updateEmergencyProfile = async (req, res) => {
         })
     };
 
-    const profileId = await emergencyProfileRepository.updateEmergencyProfile(
+    await emergencyProfileRepository.updateEmergencyProfile(
         id,
         firstName,
         lastName,
@@ -96,7 +96,7 @@ const updateEmergencyProfile = async (req, res) => {
 
     res.status(201).json({
         message: 'Notfallmappe aktualisiert!',
-        emergencyProfileId: profileId,
+        emergencyProfileId: id,
     })
 }
 
