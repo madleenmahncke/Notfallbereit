@@ -9,6 +9,10 @@
 
 </details>
 
+## Dev Notes
+
+The SQL statement to initalize the database can be found in ´.../database´.
+
 ## Requirements
 
 Before running the backend, make sure the following software is installed:
