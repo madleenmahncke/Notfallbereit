@@ -58,41 +58,4 @@ flutter pub get
 4. Start an Android emulator or connect a physical Android device.
 5. Select the target device from the toolbar.
 6. Click **Run** or press **Shift + F10** to launch the application.
-
-## Useful Flutter Commands
-
-Analyze the project:
-
-```bash
-flutter analyze
-```
-
-Run all tests:
-
-```bash
-flutter test
-```
-
-Build an Android APK:
-
-```bash
-flutter build apk
-```
-
-Build an Android App Bundle:
-
-```bash
-flutter build appbundle
-```
-
-Clean generated build files:
-
-```bash
-flutter clean
-```
-
-Update project dependencies:
-
-```bash
-flutter pub get
 ```
