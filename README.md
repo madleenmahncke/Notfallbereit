@@ -1,8 +1,8 @@
 # Notfallbereit – Flutter Frontend
 
 <details>
-<summary>Click here to expand</summary>
-This is the hidden content that will show up when the block is expanded.
+<summary>Click here for more information about Notfallbereit</summary>
+Notfallbereit is a digital emergency folder for everyone. You can save health information for an emergency. Paramedics can scan your emergency profile via QR-Code.
 </details>
 
 ## Requirements
