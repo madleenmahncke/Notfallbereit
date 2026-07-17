@@ -2,7 +2,7 @@
 
 <details>
 <summary>Click here for more information about Notfallbereit</summary>
-Notfallbereit is a digital emergency folder for everyone. You can save health information for an emergency. Paramedics can scan your emergency profile via QR-Code.
+> Notfallbereit is a digital emergency folder for everyone. You can save health information for an emergency. Paramedics can scan your emergency profile via QR-Code.
 </details>
 
 ## Requirements
