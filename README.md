@@ -34,7 +34,7 @@ cd notfallbereit
 Download the release from releases:
 
 ```bash
-Release - Backend
+[Release - Backend](https://github.com/madleenmahncke/Notfallbereit/releases/tag/v1.0.0)
 ```
 
 Add the code to your directory.
