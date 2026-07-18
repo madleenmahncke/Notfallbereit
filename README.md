@@ -31,10 +31,10 @@ mkdir notfallbereit
 cd notfallbereit
 ```
 
-Clone the repository:
+Download the release:
 
 ```bash
-git clone RELEASE
+Release - Backend
 ```
 
 Install all required dependencies:
