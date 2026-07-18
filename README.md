@@ -31,11 +31,13 @@ mkdir notfallbereit
 cd notfallbereit
 ```
 
-Download the release:
+Download the release from releases:
 
 ```bash
 Release - Backend
 ```
+
+Add the code to your directory.
 
 Install all required dependencies:
 
