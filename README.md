@@ -20,7 +20,7 @@ Before running the backend, make sure the following software is installed:
 * Node.js
 * npm (should be installed with Node.js version manager oder Node.js installer)
 * MySQL Server
-* WebStorm or another code editor
+* WebStorm or another code editor (if PowerShell is not working, please use git bash)
 
 ## Installation
 
