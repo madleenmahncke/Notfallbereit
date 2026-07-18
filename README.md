@@ -18,7 +18,7 @@ The SQL statement to initalize the database can be found in `.../database/init_d
 Before running the backend, make sure the following software is installed:
 
 * Node.js
-* npm
+* npm (should be installed with Node.js version manager oder Node.js installer)
 * MySQL Server
 * WebStorm or another code editor
 
