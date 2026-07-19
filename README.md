@@ -56,6 +56,32 @@ This command installs all packages listed in the `package.json` file, including:
 - uuid
 - validator
 
+## Executable
+
+An executable windows file can be created via:
+
+```bash
+flutter build windows
+```
+
+and found in the path:
+
+```bash
+"...\build\windows\x64\runner\Release"
+```
+
+An executable .apk file can be created via:
+
+```bash
+flutter build apk --release
+```
+
+and found in the path:
+
+```bash
+"...\build\app\outputs\flutter-apk"
+```
+
 ## Database
 
 Before starting the backend, make sure that:
